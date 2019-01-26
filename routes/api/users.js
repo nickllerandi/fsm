@@ -47,6 +47,7 @@ router.post("/register", async (req, res) => {
                 await res.json(user);
             } catch(err) {
                 console.log("Caught error: ", err)
+                res.send('ahhhh error')
             }
         }
     }
@@ -91,7 +92,7 @@ router.post("/login", async (req, res) => {
                 res.status(400).json(errors);
             }
         } else {
-            errors.email = "User not found" 
+            errors.email = "User not found"
             res.status(400).json(errors);
         }
     }
