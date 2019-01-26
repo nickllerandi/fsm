@@ -31,14 +31,6 @@ router.get("/", async (req, res) => {
     }
 });
 
-// Get all tags
-// router.get("/tags"), async (req, res) => {
-//     try {
-//         const tags = await Question
-//             .find({})
-//     }
-// }
-
 // Create a new question
 router.post("/", passport.authenticate("jwt", {session: false}), async (req, res) => {
     const newQuestion = new Question({

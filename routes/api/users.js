@@ -46,7 +46,7 @@ router.post("/register", async (req, res) => {
                 let user = await newUser.save();
                 await res.json(user);
             } catch(err) {
-                console.log("Caught error: ", err)
+                console.log("Caught error: ", err);
             }
         }
     }
