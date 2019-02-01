@@ -29,8 +29,6 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 
-app.get("/", (req, res) => res.send("Fullstack Musician"));
-
 // Use routes
 app.use("/api/users", users);
 app.use("/api/questions", questions);
