@@ -5,7 +5,9 @@ import {connect} from "react-redux";
 import {getQuestions} from "../../actions/questionActions";
 
 class Homepage extends Component {
-    componentDidMount() {
+    constructor(props) {
+        super(props);
+
         this.props.getQuestions();
     }
 
