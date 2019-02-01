@@ -14,7 +14,7 @@ class Homepage extends Component {
 
         return (
             <div className="Landing">
-                <h1>Fullstack Musician HERE WE GO</h1>
+                <h1>Fullstack Musician LIVE</h1>
                 <Link to="/">Ask a Question</Link>
                 <ul>
                     {questions.map(question => {
