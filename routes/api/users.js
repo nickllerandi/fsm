@@ -91,7 +91,7 @@ router.post("/login", async (req, res) => {
                 res.status(400).json(errors);
             }
         } else {
-            errors.email = "User not found" 
+            errors.email = "User not found";
             res.status(400).json(errors);
         }
     }
