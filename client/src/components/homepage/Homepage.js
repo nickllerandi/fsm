@@ -5,16 +5,19 @@ import {connect} from "react-redux";
 import {getQuestions} from "../../actions/questionActions";
 
 class Homepage extends Component {
-    componentDidMount() {
+    constructor(props) {
+        super(props);
+
         this.props.getQuestions();
     }
 
     render() {
         const {questions} = this.props.questionReducer;
-
+        const {name} = this.props.authReducer.user;
         return (
             <div className="Landing">
-                <h1>Fullstack Musician LIVE</h1>
+                <h1>Fullstack Musician</h1>
+                {name ? <h2>Hi {name}</h2> : null}
                 <Link to="/">Ask a Question</Link>
                 <ul>
                     {questions.map(question => {
@@ -34,6 +37,7 @@ class Homepage extends Component {
 }
 
 const mapStateToProps = state => ({
+    authReducer: state.authReducer,
     questionReducer: state.questionReducer
 });
 
