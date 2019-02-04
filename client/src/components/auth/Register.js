@@ -19,6 +19,12 @@ class Register extends Component {
         this.setState({[e.target.name]: e.target.value})
     };
 
+    componentDidMount() {
+        if (this.props.authReducer.isAuthenticated) {
+            this.props.history.push("/");
+        }
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.errorReducer) {
             this.setState({errors: nextProps.errorReducer})

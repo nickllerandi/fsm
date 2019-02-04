@@ -33,11 +33,15 @@ export const loginUser = userData => dispatch => {
         )
 };
 
-
-// SHOULD I GO SOMEWHERE?
 export const setCurrentUser = (decoded) => {
     return {
         type: SET_CURRENT_USER,
         payload: decoded
     }
+};
+
+export const logoutUser = () => dispatch => {
+    localStorage.removeItem("jwtToken");
+    setAuthToken(false);
+    dispatch(setCurrentUser({}))
 };

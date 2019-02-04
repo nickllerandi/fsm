@@ -77,8 +77,7 @@ router.post("/login", async (req, res) => {
 
                 let token = await jwt.sign(
                     payload,
-                    secret,
-                    {expiresIn: "1hr"}
+                    secret
                 );
 
                 await res.json({
