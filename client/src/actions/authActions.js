@@ -23,7 +23,6 @@ export const loginUser = userData => dispatch => {
             localStorage.setItem('jwtToken', token);
             setAuthToken(token);
             const decoded = jwtDecode(token);
-            // REFACTOR ME?
             dispatch(setCurrentUser(decoded))
         })
         .catch(err =>

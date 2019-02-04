@@ -8,9 +8,7 @@
     "client": "npm start --prefix client",
     "server": "nodemon server.js",
     "develop": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "test": "mocha './{,!(node_modules)/**}/*.test.js'",
-    "test-watch": "nodemon --exec \"npm test\""
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
@@ -26,13 +24,6 @@
     "validator": "^10.9.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "expect": "^23.6.0",
-    "jest": "^23.6.0",
-    "mocha": "^5.2.0",
-    "nodemon": "^1.18.8",
-    "superagent": "^4.0.0",
-    "supertest": "^3.3.0"
+    "nodemon": "^1.18.8"
   }
 }
