@@ -40,28 +40,37 @@ class Login extends Component {
 
     render() {
         const {errors} = this.state;
+        const {isAuthenticated, user} = this.props.authReducer;
+
+        const outState = (
+            <form noValidate onSubmit={this.onSubmit}>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                />
+                {errors.email}
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.onChange}
+                />
+                {errors.password}
+                <input type="submit" value="Submit"/>
+            </form>
+        );
+
+        const inState = (
+            `You are currently logged in as ${user.name}.`
+        );
 
         return (
             <div className="Login">
-                <form noValidate onSubmit={this.onSubmit}>
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                        value={this.state.email}
-                        onChange={this.onChange}
-                    />
-                    {errors.email}
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        value={this.state.password}
-                        onChange={this.onChange}
-                    />
-                    {errors.password}
-                    <input type="submit" value="Submit"/>
-                </form>
+                {isAuthenticated ? inState : outState}
             </div>
         )
     }
