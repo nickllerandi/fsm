@@ -16,11 +16,7 @@ export const getQuestions = () => async dispatch => {
 
 export const createQuestion = (newQuestionData, history) => async dispatch => {
     try {
-        const res = await axios.post("/api/questions", newQuestionData);
-        dispatch({
-            type: CREATE_QUESTION,
-            payload: res.data
-        });
+        await axios.post("/api/questions", newQuestionData);
         history.push("/");
     } catch (err) {
         dispatch({

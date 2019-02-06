@@ -7,7 +7,7 @@ const passport = require("passport");
 const keys = require("../../config/keys");
 
 // Validation
-// ...
+const validateCreateQuestionInput = require("../../validation/createQuestion");
 
 // Question Model
 const Question = require("../../models/Question");
@@ -32,22 +32,26 @@ router.get("/", async (req, res) => {
 
 // Create a new question
 router.post("/", passport.authenticate("jwt", {session: false}), async (req, res) => {
-    try {
-        const newQuestion = new Question({
-            title: req.body.title,
-            body: req.body.body,
-            tags: req.body.tags,
-            user: req.user.id
-        });
+    const {errors, isValid} = validateCreateQuestionInput(req.body);
 
-        const question = await newQuestion.save();
-        await res.json(question);
-        //THE BELOW IS NOT WORKING
-    } catch (err) {
-        res.status(400).json({
-            unauthorized: "You must be logged in to ask a question"
-        })
+    if (!isValid) {
+        res.status(400).json(errors);
+    } else {
+        try {
+            const newQuestion = new Question({
+                title: req.body.title,
+                body: req.body.body,
+                tags: req.body.tags,
+                user: req.user.id
+            });
+
+            const question = await newQuestion.save();
+            await res.json(question);
+        } catch (err) {
+            console.log(err);
+        }
     }
+
 });
 
 module.exports = router;

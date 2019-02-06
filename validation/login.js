@@ -4,8 +4,8 @@ const isEmpty = require("./isEmpty");
 const validateLoginInput = (reqBody) => {
     let errors = {};
 
-    reqBody.email = !isEmpty(reqBody.email) ? reqBody.email : "" 
-    reqBody.password = !isEmpty(reqBody.password) ? reqBody.password : "" 
+    reqBody.email = !isEmpty(reqBody.email) ? reqBody.email : "";
+    reqBody.password = !isEmpty(reqBody.password) ? reqBody.password : "";
 
     if (!Validator.isEmail(reqBody.email)) {
         errors.email = "Please enter a valid email"
