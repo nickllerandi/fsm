@@ -27,10 +27,6 @@ const QuestionSchema = new Schema({
             type: String
         }
     ],
-    date: {
-        type: Date,
-        default: Date.now
-    },
     answers: [
         {
             user: {

@@ -26,22 +26,28 @@ router.get("/", async (req, res) => {
 
         res.json(questions);
     } catch (err) {
-        console.log(err);
         res.status(404);
     }
 });
 
 // Create a new question
 router.post("/", passport.authenticate("jwt", {session: false}), async (req, res) => {
-    const newQuestion = new Question({
-        title: req.body.title,
-        body: req.body.body,
-        tags: req.body.tags,
-        user: req.user.id
-    });
+    try {
+        const newQuestion = new Question({
+            title: req.body.title,
+            body: req.body.body,
+            tags: req.body.tags,
+            user: req.user.id
+        });
 
-    const question = await newQuestion.save();
-    await res.json(question);
+        const question = await newQuestion.save();
+        await res.json(question);
+        //THE BELOW IS NOT WORKING
+    } catch (err) {
+        res.status(400).json({
+            unauthorized: "You must be logged in to ask a question"
+        })
+    }
 });
 
 module.exports = router;

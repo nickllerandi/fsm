@@ -20,6 +20,7 @@ import Footer from "./components/layout/Footer";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Tags from "./components/tags/Tags";
+import Ask from "./components/questions/Ask";
 
 if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
@@ -38,6 +39,7 @@ class App extends Component {
                         <Route exact path="/tags" component={Tags}/>
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/login" component={Login}/>
+                        <Route exact path="/ask" component={Ask}/>
                         <Footer/>
                     </div>
                 </Router>
