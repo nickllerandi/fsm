@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 import {loginUser} from "../../actions/authActions";
 
@@ -43,25 +44,29 @@ class Login extends Component {
         const {isAuthenticated, user} = this.props.authReducer;
 
         const outState = (
-            <form noValidate onSubmit={this.onSubmit}>
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={this.state.email}
-                    onChange={this.onChange}
-                />
-                {errors.email}
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={this.state.password}
-                    onChange={this.onChange}
-                />
-                {errors.password}
-                <input type="submit" value="Submit"/>
-            </form>
+            <div className="outState">
+                You must be logged in the ask a question.
+                Login below or <Link to="/register">Signup</Link>
+                <form noValidate onSubmit={this.onSubmit}>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        value={this.state.email}
+                        onChange={this.onChange}
+                    />
+                    {errors.email}
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        value={this.state.password}
+                        onChange={this.onChange}
+                    />
+                    {errors.password}
+                    <input type="submit" value="Submit"/>
+                </form>
+            </div>
         );
 
         const inState = (
