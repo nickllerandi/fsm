@@ -1,7 +1,8 @@
-import {GET_QUESTIONS} from "../actions/types";
+import {GET_QUESTIONS, GET_QUESTION} from "../actions/types";
 
 const initialState = {
-    questions: []
+    questions: [],
+    question: {}
 };
 
 export default (state = initialState, action) => {
@@ -10,6 +11,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 questions: action.payload
+            };
+        case GET_QUESTION:
+            return {
+                ...state,
+                question: action.payload
             };
         default:
             return state;

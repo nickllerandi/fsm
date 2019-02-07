@@ -14,13 +14,21 @@ import store from "./store";
 import './App.css';
 
 // Components
+// Layout
 import Navbar from "./components/layout/Navbar";
 import Homepage from "./components/homepage/Homepage";
 import Footer from "./components/layout/Footer";
+
+// Authentication
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-import Tags from "./components/tags/Tags";
+
+// Questions
 import Ask from "./components/questions/Ask";
+import Question from "./components/questions/Question";
+
+// Misc
+import Tags from "./components/tags/Tags";
 
 if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
@@ -40,6 +48,7 @@ class App extends Component {
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/ask" component={Ask}/>
+                        <Route exact path="/questions/:id" component={Question}/>
                         <Footer/>
                     </div>
                 </Router>

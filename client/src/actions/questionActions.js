@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {GET_QUESTIONS, CREATE_QUESTION, GET_ERRORS} from "./types";
+import {GET_QUESTIONS, GET_QUESTION, GET_ERRORS} from "./types";
 
 export const getQuestions = () => async dispatch => {
     try {
@@ -11,6 +11,18 @@ export const getQuestions = () => async dispatch => {
         })
     } catch (err) {
         console.log(err)
+    }
+};
+
+export const getQuestion = id => async dispatch => {
+    try {
+        const res = await axios.get(`/api/questions/${id}`);
+        dispatch({
+            type: GET_QUESTION,
+            payload: res.data
+        })
+    } catch (err) {
+        console.log(err);
     }
 };
 
