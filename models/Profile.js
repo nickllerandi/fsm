@@ -6,14 +6,62 @@ const ProfileSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "users"
     },
+    location: {
+        type: String
+    },
+    bio: {
+        type: String
+    },
+    website: {
+        type: String
+    },
+    social: {
+        youtube: {
+            type: String
+        },
+        twitter: {
+            type: String
+        },
+        facebook: {
+            type: String
+        },
+        linkedin: {
+            type: String
+        },
+        instagram: {
+            type: String
+        }
+    },
     bands: [
         {
-            name: {
+            bandName: {
                 type: String
             },
-            url: {
+            bandWebsite: {
                 type: String
+            },
+            bandSocial: {
+                youtube: {
+                    type: String
+                },
+                twitter: {
+                    type: String
+                },
+                facebook: {
+                    type: String
+                },
+                linkedin: {
+                    type: String
+                },
+                instagram: {
+                    type: String
+                }
             }
+        }
+    ],
+    instruments: [
+        {
+            type: String
         }
     ],
     date: {
