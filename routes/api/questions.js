@@ -48,10 +48,23 @@ router.post("/", passport.authenticate("jwt", {session: false}), async (req, res
             const question = await newQuestion.save();
             await res.json(question);
         } catch (err) {
-            console.log(err);
+            res.status(404).json({
+                error: "No questions found"
+            });
         }
     }
+});
 
+router.get("/:id", async (req, res) => {
+    try {
+        const question = await Question
+            .findById(req.params.id);
+        res.json(question);
+    } catch (err) {
+        res.status(404).json({
+            error: "Question not found"
+        });
+    }
 });
 
 module.exports = router;
