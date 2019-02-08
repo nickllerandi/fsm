@@ -6,6 +6,10 @@ const ProfileSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "users"
     },
+    displayName: {
+        type: String,
+        required: true
+    },
     location: {
         type: String
     },
@@ -34,29 +38,7 @@ const ProfileSchema = new Schema({
     },
     bands: [
         {
-            bandName: {
-                type: String
-            },
-            bandWebsite: {
-                type: String
-            },
-            bandSocial: {
-                youtube: {
-                    type: String
-                },
-                twitter: {
-                    type: String
-                },
-                facebook: {
-                    type: String
-                },
-                linkedin: {
-                    type: String
-                },
-                instagram: {
-                    type: String
-                }
-            }
+            type: String
         }
     ],
     instruments: [
