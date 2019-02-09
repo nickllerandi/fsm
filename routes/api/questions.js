@@ -20,8 +20,8 @@ router.get("/test", (req, res) => res.json({msg: "Posts route works"}));
 // Get all questions sorted by date
 router.get("/", async (req, res) => {
     try {
-        const questions = await Question
-            .find()
+        const questions = await Question.find()
+            .populate("user", "name")
             .sort({date: -1});
 
         res.json(questions);

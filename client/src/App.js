@@ -27,6 +27,9 @@ import Login from "./components/auth/Login";
 import Ask from "./components/questions/Ask";
 import Question from "./components/questions/Question";
 
+// Profiles
+import Profile from "./components/profiles/Profile";
+
 // Misc
 import Tags from "./components/tags/Tags";
 
@@ -49,6 +52,7 @@ class App extends Component {
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/ask" component={Ask}/>
                         <Route exact path="/questions/:id" component={Question}/>
+                        <Route exact path="/users/:id/:name" component={Profile}/>
                         <Footer/>
                     </div>
                 </Router>
