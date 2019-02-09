@@ -16,7 +16,7 @@ router.get("/test", (req, res) => res.json({msg: "Profile route works"}));
 router.get("/", passport.authenticate("jwt", {session:false}), async (req, res) => {
     try {
         const profile = await Profile.findOne({user: req.user.id})
-            .populate("user", ["name", "email"]);
+            .populate("user");
 
         if (!profile) {
             errors.noprofile = "No profile found for this user";
@@ -87,7 +87,9 @@ router.get("/users/:userId", async (req, res) => {
     const userId = req.params.userId;
     const errors = {};
     try {
-        const profile = await Profile.findOne({user: userId});
+        const profile = await Profile
+            .findOne({user: userId})
+            .populate("user");
         res.json(profile)
     } catch (err) {
         errors.noprofile = "No profile found";
