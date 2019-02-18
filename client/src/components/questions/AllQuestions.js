@@ -10,11 +10,8 @@ class AllQuestions extends Component {
                 {questions.map(question => {
                     return (
                         <li key={question._id}>
-                            <Link to={`/questions/${question._id}`}>{question.title}</Link>
-                            -
-                            {question.tags.map(tag => {
-                                return ` ${tag} | `
-                            })}
+                            <Link to={`/questions/${question._id}`}>{question.title}</Link> -
+                            <Link to={`/users/${question.user._id}/${question.user.name}`}>{question.user.name}</Link>
                         </li>
                     )
                 })}

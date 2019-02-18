@@ -12,10 +12,12 @@ const validateProfileInput = require("../../validation/profile");
 
 router.get("/test", (req, res) => res.json({msg: "Profile route works"}));
 
+// Get the profile of the current logged-in user
 router.get("/", passport.authenticate("jwt", {session:false}), async (req, res) => {
     try {
         const profile = await Profile.findOne({user: req.user.id})
-            .populate("user", ["name", "email"]);
+            .populate("user");
+
         if (!profile) {
             errors.noprofile = "No profile found for this user";
             return res.status(404).json(errors);
@@ -79,5 +81,21 @@ router.post("/", passport.authenticate("jwt", {session:false}), async (req, res)
         console.log(err);
     }
 });
+
+// Get a profile by user id
+router.get("/users/:userId", async (req, res) => {
+    const userId = req.params.userId;
+    const errors = {};
+    try {
+        const profile = await Profile
+            .findOne({user: userId})
+            .populate("user");
+        res.json(profile)
+    } catch (err) {
+        errors.noprofile = "No profile found";
+        res.status(404).json(errors);
+    }
+});
+
 
 module.exports = router;
