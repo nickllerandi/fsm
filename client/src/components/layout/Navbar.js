@@ -12,6 +12,7 @@ class Navbar extends Component {
 
     render() {
         const {isAuthenticated} = this.props.authReducer;
+        const {user} = this.props.authReducer;
 
         const outState = (
             <div>
@@ -22,12 +23,12 @@ class Navbar extends Component {
 
         const inState = (
             <div>
-                <a
-                    href="#"
-                    onClick={this.onLogoutClick}
-                >
+                <Link to={`/users/${user.id}/${user.name}`}>
+                    {user.name}
+                </Link>
+                <button onClick={this.onLogoutClick}>
                     Logout
-                </a>
+                </button>
             </div>
         );
 
