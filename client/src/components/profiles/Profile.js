@@ -19,13 +19,27 @@ class Profile extends Component {
     }
 
     render() {
+        // Check if user has completed a profile
         if (this.props.profileReducer.profile === null) return "User has not yet completed their profile";
 
+        // Render Profile
         const {displayName, location, bio, website} = this.props.profileReducer.profile;
         const {questions} = this.props.questionReducer;
+        const {id} = this.props.authReducer.user;
+
+        let isOnOwnProfilePage = false;
+        if (id === this.props.match.params.id) {
+            isOnOwnProfilePage = true;
+        }
 
         return (
             <div className="Profile">
+
+                {/*Check if user is on their own profile page*/}
+                {isOnOwnProfilePage ?
+                    <p>Edit Profile</p> :
+                    null
+                }
                 <p>{displayName}</p>
                 <p>{location}</p>
                 <p>{bio}</p>
@@ -46,7 +60,8 @@ class Profile extends Component {
 
 const mapStateToProps = state => ({
     profileReducer: state.profileReducer,
-    questionReducer: state.questionReducer
+    questionReducer: state.questionReducer,
+    authReducer: state.authReducer
 });
 
 export default connect(mapStateToProps, {getProfile, getUserQuestions})(Profile);
