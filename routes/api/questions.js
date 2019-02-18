@@ -21,7 +21,7 @@ router.get("/test", (req, res) => res.json({msg: "Posts route works"}));
 router.get("/", async (req, res) => {
     try {
         const questions = await Question.find()
-            .populate("user")
+            .populate("user", ["name", "email"])
             .sort({date: -1});
 
         res.json(questions);
@@ -66,5 +66,21 @@ router.get("/:id", async (req, res) => {
         });
     }
 });
+
+// Get all questions for a particular user
+router.get("/user/:userId", async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const questions = await Question.find({
+            user: userId
+        })
+            .sort({date: -1});
+
+        res.json(questions);
+    } catch (err) {
+        res.status(404);
+    }
+});
+
 
 module.exports = router;
