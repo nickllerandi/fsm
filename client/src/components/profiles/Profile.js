@@ -19,7 +19,7 @@ class Profile extends Component {
     }
 
     render() {
-        const {id} = this.props.authReducer.user;
+        const {id, name} = this.props.authReducer.user;
         let isOnOwnProfilePage = false;
 
         // Check if user is on their own profile page
@@ -28,7 +28,13 @@ class Profile extends Component {
         }
 
         if (this.props.profileReducer.profile === null && isOnOwnProfilePage) {
-            return "Click to create your profile"
+            return (
+                <div>
+                    <p>Welcome {name}</p>
+                    <p>You have not yet setup your profile. Please add some info.</p>
+                    CREATE PROFILE
+                </div>
+            )
         }
 
         // Check if other user has completed a profile
