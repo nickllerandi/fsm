@@ -19,14 +19,16 @@ class Profile extends Component {
     }
 
     render() {
+        if (this.props.profileReducer.profile === "no user") return "Sorry. This user doesn't exist";
+
         // Check if user has completed a profile
         if (this.props.profileReducer.profile === null) return "User has not yet completed their profile";
 
-        // Render Profile
         const {displayName, location, bio, website} = this.props.profileReducer.profile;
         const {questions} = this.props.questionReducer;
         const {id} = this.props.authReducer.user;
 
+        // Check if user is on their own profile page
         let isOnOwnProfilePage = false;
         if (id === this.props.match.params.id) {
             isOnOwnProfilePage = true;
@@ -35,11 +37,11 @@ class Profile extends Component {
         return (
             <div className="Profile">
 
-                {/*Check if user is on their own profile page*/}
                 {isOnOwnProfilePage ?
                     <p>Edit Profile</p> :
                     null
                 }
+
                 <p>{displayName}</p>
                 <p>{location}</p>
                 <p>{bio}</p>

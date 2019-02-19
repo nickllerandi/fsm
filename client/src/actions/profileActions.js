@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {GET_PROFILE} from "./types";
+import {GET_PROFILE, CLEAR_CURRENT_PROFILE} from "./types";
 
 export const getProfile = userId => async dispatch => {
     try {
@@ -10,6 +10,15 @@ export const getProfile = userId => async dispatch => {
             payload: res.data
         })
     } catch (err) {
-        console.log(err);
+        dispatch({
+            type: GET_PROFILE,
+            payload: "no user"
+        })
     }
 };
+
+export const clearCurrentProfile = () => {
+    return {
+        type: CLEAR_CURRENT_PROFILE
+    }
+}
