@@ -19,26 +19,32 @@ class Profile extends Component {
     }
 
     render() {
-        if (this.props.profileReducer.profile === "no user") return "Sorry. This user doesn't exist";
-
-        // Check if user has completed a profile
-        if (this.props.profileReducer.profile === null) return "User has not yet completed their profile";
-
-        const {displayName, location, bio, website} = this.props.profileReducer.profile;
-        const {questions} = this.props.questionReducer;
         const {id} = this.props.authReducer.user;
+        let isOnOwnProfilePage = false;
 
         // Check if user is on their own profile page
-        let isOnOwnProfilePage = false;
         if (id === this.props.match.params.id) {
             isOnOwnProfilePage = true;
         }
+
+        if (this.props.profileReducer.profile === null && isOnOwnProfilePage) {
+            return "Click to create your profile"
+        }
+
+        // Check if other user has completed a profile
+        if (this.props.profileReducer.profile === null) return "User has not yet completed their profile";
+
+        // Response if user id does not exist
+        if (this.props.profileReducer.profile === "no user") return "Sorry. This user doesn't exist";
+
+        const {displayName, location, bio, website} = this.props.profileReducer.profile;
+        const {questions} = this.props.questionReducer;
 
         return (
             <div className="Profile">
 
                 {isOnOwnProfilePage ?
-                    <p>Edit Profile</p> :
+                    <p>CREATE / EDIT PROFILE COMPONENT</p> :
                     null
                 }
 
