@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 // Actions
 import {getProfile} from "../../actions/profileActions";
@@ -32,7 +33,9 @@ class Profile extends Component {
                 <div>
                     <p>Welcome {name}</p>
                     <p>You have not yet setup your profile. Please add some info.</p>
-                    CREATE PROFILE
+                    <Link to={`/users/${id}/${name}/edit`}>
+                        Create Profile
+                    </Link>
                 </div>
             )
         }
