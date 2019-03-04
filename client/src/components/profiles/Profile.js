@@ -32,10 +32,10 @@ class Profile extends Component {
             return (
                 <div>
                     <p>Welcome {name}</p>
-                    <p>You have not yet setup your profile. Please add some info.</p>
                     <Link to={`/users/${id}/${name}/edit`}>
-                        Create Profile
+                        Edit Profile
                     </Link>
+                    <p>You have not yet setup your profile. Please add some info.</p>
                 </div>
             )
         }
@@ -53,7 +53,9 @@ class Profile extends Component {
             <div className="Profile">
 
                 {isOnOwnProfilePage ?
-                    <p>CREATE / EDIT PROFILE COMPONENT</p> :
+                    <Link to={`/users/${id}/${name}/edit`}>
+                        Edit Profile
+                    </Link> :
                     null
                 }
 
