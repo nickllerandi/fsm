@@ -7,8 +7,7 @@ const ProfileSchema = new Schema({
         ref: "users"
     },
     displayName: {
-        type: String,
-        required: true
+        type: String
     },
     location: {
         type: String

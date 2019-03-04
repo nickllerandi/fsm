@@ -89,7 +89,7 @@ router.get("/users/:userId", async (req, res) => {
     try {
         const profile = await Profile
             .findOne({user: userId})
-            .populate("user");
+            .populate("user", ["name", "email"]);
         res.json(profile)
     } catch (err) {
         errors.noprofile = "No profile found";

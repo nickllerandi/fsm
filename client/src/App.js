@@ -29,6 +29,7 @@ import Question from "./components/questions/Question";
 
 // Profiles
 import Profile from "./components/profiles/Profile";
+import ProfileEdit from "./components/profiles/ProfileEdit";
 
 // Misc
 import Tags from "./components/tags/Tags";
@@ -53,6 +54,7 @@ class App extends Component {
                         <Route exact path="/ask" component={Ask}/>
                         <Route exact path="/questions/:id" component={Question}/>
                         <Route exact path="/users/:id/:name" component={Profile}/>
+                        <Route exact path="/users/:id/:name/edit" component={ProfileEdit}/>
                         <Footer/>
                     </div>
                 </Router>
