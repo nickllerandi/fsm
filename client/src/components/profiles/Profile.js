@@ -21,14 +21,13 @@ class Profile extends Component {
 
     render() {
         const {id, name} = this.props.authReducer.user;
-        let isOnOwnProfilePage = false;
+        const paramsId = this.props.match.params.id;
+
+        let isOnOwnProfilePage;
+        if (id === paramsId) isOnOwnProfilePage = true;
 
         // Check if user is on their own profile page
-        if (id === this.props.match.params.id) {
-            isOnOwnProfilePage = true;
-        }
-
-        if (this.props.profileReducer.profile === null && isOnOwnProfilePage) {
+        if (isOnOwnProfilePage && this.props.profileReducer.profile === null) {
             return (
                 <div>
                     <p>Welcome {name}</p>
@@ -40,13 +39,25 @@ class Profile extends Component {
             )
         }
 
-        // Check if other user has completed a profile
-        if (this.props.profileReducer.profile === null) return "User has not yet completed their profile";
+        // Check if other user has a blank profile
+        if (this.props.profileReducer.profile === null) {
+            return (
+                <div>
+                    <p>User has not yet completed their profile</p>
+                </div>
+            )
+        }
 
         // Response if user id does not exist
-        if (this.props.profileReducer.profile === "no user") return "Sorry. This user doesn't exist";
+        if (this.props.profileReducer.profile === "no user") {
+            return (
+                <div>
+                    <p>Sorry. This user doesn't exist</p>
+                </div>
+            )
+        }
 
-        const {displayName, location, bio, website} = this.props.profileReducer.profile;
+        const {displayName, location, bio, website, social, bands, instruments} = this.props.profileReducer.profile;
         const {questions} = this.props.questionReducer;
 
         return (
@@ -59,10 +70,31 @@ class Profile extends Component {
                     null
                 }
 
-                <p>{displayName}</p>
-                <p>{location}</p>
-                <p>{bio}</p>
-                <p>{website}</p>
+                <h3>About {displayName}</h3>
+                <p>Location: {location}</p>
+                <p>Bio: {bio}</p>
+                <p>Website: {website}</p>
+
+                {social ?
+                    <div>
+                        <h3>Social</h3>
+                        <p>Youtube: {social.youtube}</p>
+                        <p>Twitter: {social.twitter}</p>
+                        <p>Facebook: {social.facebook}</p>
+                        <p>LinkedIn: {social.linkedin}</p>
+                        <p>Instagram: {social.instagram}</p>
+                    </div> :
+                    null
+                }
+
+                <h3>Bands</h3>
+                <p>{bands}</p>
+
+                <h3>Instruments</h3>
+                <p>{instruments}</p>
+
+                <h3>Questions Asked:</h3>
+
                 <ul>
                     {questions.map(question => {
                         return (
