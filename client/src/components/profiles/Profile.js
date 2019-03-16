@@ -26,7 +26,7 @@ class Profile extends Component {
         let isOnOwnProfilePage;
         if (id === paramsId) isOnOwnProfilePage = true;
 
-        // Check if user is on their own profile page
+        // User is logged-in, on own profile page, but no profile data
         if (isOnOwnProfilePage && this.props.profileReducer.profile === null) {
             return (
                 <div>
@@ -57,6 +57,7 @@ class Profile extends Component {
             )
         }
 
+        // Display profile data whether logged-in or out
         const {displayName, location, bio, website, social, bands, instruments} = this.props.profileReducer.profile;
         const {questions} = this.props.questionReducer;
 
