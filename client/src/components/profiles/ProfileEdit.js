@@ -63,10 +63,13 @@ class ProfileEdit extends Component {
         if (nextProps.errorReducer) {
             this.setState({errors: nextProps.errorReducer})
         }
+        if (nextProps.authReducer.isAuthenticated === false) {
+            this.props.history.push("/");
+        }
     }
 
     onDeleteClick = (e) => {
-        deleteAccount();
+        this.props.deleteAccount();
     }
 
     render() {
@@ -174,4 +177,4 @@ const mapStateToProps = state => ({
     errorReducer: state.errorReducer
 });
 
-export default connect(mapStateToProps, {createProfile})(ProfileEdit);
+export default connect(mapStateToProps, {createProfile, deleteAccount})(ProfileEdit);
