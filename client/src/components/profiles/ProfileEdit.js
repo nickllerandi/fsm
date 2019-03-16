@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 
 // Actions
-import {createProfile} from "../../actions/profileActions";
+import {createProfile, deleteAccount} from "../../actions/profileActions";
 
 class ProfileEdit extends Component {
     constructor(props) {
@@ -63,6 +63,10 @@ class ProfileEdit extends Component {
         if (nextProps.errorReducer) {
             this.setState({errors: nextProps.errorReducer})
         }
+    }
+
+    onDeleteClick = (e) => {
+        deleteAccount();
     }
 
     render() {
@@ -158,6 +162,7 @@ class ProfileEdit extends Component {
                     />
                     <input type="submit" value="Submit"/>
                 </form>
+                <button onClick={this.onDeleteClick}>Delete My Account</button>
             </div>
         )
     }

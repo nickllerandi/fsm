@@ -11,7 +11,10 @@ class AllQuestions extends Component {
                     return (
                         <li key={question._id}>
                             <Link to={`/questions/${question._id}`}>{question.title}</Link> -
-                            <Link to={`/users/${question.user._id}/${question.user.name}`}>{question.user.name}</Link>
+                            {question.user ? 
+                                <Link to={`/users/${question.user._id}/${question.user.name}`}>{question.user.name}</Link> :
+                                'User deleted profile :('
+                            }
                         </li>
                     )
                 })}

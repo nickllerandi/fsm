@@ -38,3 +38,7 @@ export const clearCurrentProfile = () => {
         type: CLEAR_CURRENT_PROFILE
     }
 }
+
+export const deleteAccount = () => {
+    console.log('deleted - profileActions.js');
+}
