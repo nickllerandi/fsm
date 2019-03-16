@@ -97,5 +97,14 @@ router.get("/users/:userId", async (req, res) => {
     }
 });
 
+router.delete("/", passport.authenticate("jwt", {session:false}), async (req, res) => {
+    try {
+        await Profile.findOneAndRemove({user: req.user.id});
+        await User.findOneAndRemove({_id: req.user.id});
+        res.json({success: true})
+    } catch (err) {
+        console.log(err)
+    }
+});
 
 module.exports = router;

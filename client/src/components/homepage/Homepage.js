@@ -7,9 +7,7 @@ import {getQuestions} from "../../actions/questionActions";
 import AllQuestions from "../questions/AllQuestions";
 
 class Homepage extends Component {
-    constructor(props) {
-        super(props);
-
+    componentDidMount() {
         this.props.getQuestions();
     }
 

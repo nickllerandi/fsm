@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 
 // Actions
-import {createProfile} from "../../actions/profileActions";
+import {createProfile, deleteAccount} from "../../actions/profileActions";
 
 class ProfileEdit extends Component {
     constructor(props) {
@@ -63,6 +63,13 @@ class ProfileEdit extends Component {
         if (nextProps.errorReducer) {
             this.setState({errors: nextProps.errorReducer})
         }
+        if (nextProps.authReducer.isAuthenticated === false) {
+            this.props.history.push("/");
+        }
+    }
+
+    onDeleteClick = (e) => {
+        this.props.deleteAccount();
     }
 
     render() {
@@ -158,6 +165,7 @@ class ProfileEdit extends Component {
                     />
                     <input type="submit" value="Submit"/>
                 </form>
+                <button onClick={this.onDeleteClick}>Delete My Account</button>
             </div>
         )
     }
@@ -169,4 +177,4 @@ const mapStateToProps = state => ({
     errorReducer: state.errorReducer
 });
 
-export default connect(mapStateToProps, {createProfile})(ProfileEdit);
+export default connect(mapStateToProps, {createProfile, deleteAccount})(ProfileEdit);
