@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 
 // Actions
-import {createProfile, deleteAccount} from "../../actions/profileActions";
+import {createProfile, deleteAccount, getProfile} from "../../actions/profileActions";
 
 class ProfileEdit extends Component {
     constructor(props) {
@@ -28,6 +28,8 @@ class ProfileEdit extends Component {
         if (this.props.match.params.id !== this.props.authReducer.user.id) {
             this.props.history.push("/");
         }
+
+        this.props.getProfile(this.props.match.params.id);
     }
 
     onChange = (e) => {
@@ -177,4 +179,4 @@ const mapStateToProps = state => ({
     errorReducer: state.errorReducer
 });
 
-export default connect(mapStateToProps, {createProfile, deleteAccount})(ProfileEdit);
+export default connect(mapStateToProps, {createProfile, deleteAccount, getProfile})(ProfileEdit);
