@@ -24,12 +24,20 @@ class ProfileEdit extends Component {
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         if (this.props.match.params.id !== this.props.authReducer.user.id) {
             this.props.history.push("/");
         }
 
-        this.props.getProfile(this.props.match.params.id);
+        await this.props.getProfile(this.props.match.params.id);
+        console.log('mount', this.props.profileReducer.profile)
+
+        const bandsCSV = this.props.profileReducer.profile.bands.join(',')
+                
+        this.setState({
+            bio: this.props.profileReducer.profile.bio,
+            bands: bandsCSV
+        })
     }
 
     onChange = (e) => {
