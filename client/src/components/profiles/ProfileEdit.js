@@ -24,20 +24,13 @@ class ProfileEdit extends Component {
         }
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         if (this.props.match.params.id !== this.props.authReducer.user.id) {
             this.props.history.push("/");
         }
 
-        await this.props.getProfile(this.props.match.params.id);
-        console.log('mount', this.props.profileReducer.profile)
-
-        const bandsCSV = this.props.profileReducer.profile.bands.join(',')
-                
-        this.setState({
-            bio: this.props.profileReducer.profile.bio,
-            bands: bandsCSV
-        })
+        this.props.getProfile(this.props.match.params.id);
+        console.log('componentDidMount')
     }
 
     onChange = (e) => {
@@ -75,6 +68,16 @@ class ProfileEdit extends Component {
         }
         if (nextProps.authReducer.isAuthenticated === false) {
             this.props.history.push("/");
+        }
+        if (nextProps.profileReducer.profile) {
+            const {profile} = nextProps.profileReducer
+            
+            const bandsCSV = profile.bands.join(',')
+
+            this.setState({
+                bio: profile.bio,
+                bands: bandsCSV
+            })
         }
     }
 
