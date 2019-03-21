@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import isEmpty from "../../validation/isEmpty";
 
 // Actions
 import {createProfile, deleteAccount, getProfile} from "../../actions/profileActions";
@@ -30,7 +31,6 @@ class ProfileEdit extends Component {
         }
 
         this.props.getProfile(this.props.match.params.id);
-        console.log('componentDidMount')
     }
 
     onChange = (e) => {
@@ -71,12 +71,34 @@ class ProfileEdit extends Component {
         }
         if (nextProps.profileReducer.profile) {
             const {profile} = nextProps.profileReducer
-            
+
             const bandsCSV = profile.bands.join(',')
+            const instrumentsCSV = profile.instruments.join(',')
+
+            profile.displayName = !isEmpty(profile.displayName) ? profile.displayName : "";
+            profile.location = !isEmpty(profile.location) ? profile.location : "";
+            profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
+            profile.website = !isEmpty(profile.website) ? profile.website : "";
+            profile.social.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube : "";
+            profile.social.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : "";
+            profile.social.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook : "";
+            profile.social.linkedin = !isEmpty(profile.social.linkedin) ? profile.social.linkedin : "";
+            profile.social.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : "";
+            profile.bands = !isEmpty(profile.bands) ? profile.bands : "";
+            profile.instruments = !isEmpty(profile.instruments) ? profile.instruments : "";
 
             this.setState({
+                displayName: profile.displayName,
+                location: profile.location,
                 bio: profile.bio,
-                bands: bandsCSV
+                website: profile.website,
+                youtube: profile.social.youtube,
+                twitter: profile.social.twitter,
+                facebook: profile.social.facebook,
+                linkedin: profile.social.linkedin,
+                instagram: profile.social.instagram,
+                bands: bandsCSV,
+                instruments: instrumentsCSV
             })
         }
     }
