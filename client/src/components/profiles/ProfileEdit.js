@@ -63,9 +63,9 @@ class ProfileEdit extends Component {
     };
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.errorReducer) {
-            this.setState({errors: nextProps.errorReducer})
-        }
+
+        this.checkForErrors(nextProps);
+        
         if (nextProps.authReducer.isAuthenticated === false) {
             this.props.history.push("/");
         }
@@ -105,6 +105,12 @@ class ProfileEdit extends Component {
 
     onDeleteClick = (e) => {
         this.props.deleteAccount();
+    }
+
+    checkForErrors = (nextProps) => {
+        if (nextProps.errorReducer) {
+            this.setState({errors: nextProps.errorReducer})
+        }
     }
 
     render() {

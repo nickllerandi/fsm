@@ -82,5 +82,10 @@ router.get("/user/:userId", async (req, res) => {
     }
 });
 
+// Delete a question
+// router.delete("/:questionId", passport.authenticate("jwt", {session: false}), async (req, res) => {
+    // if question
+// });
+
 
 module.exports = router;
