@@ -55,6 +55,7 @@ router.post("/", passport.authenticate("jwt", {session: false}), async (req, res
     }
 });
 
+// Get a question by id
 router.get("/:id", async (req, res) => {
     try {
         const question = await Question
@@ -83,9 +84,24 @@ router.get("/user/:userId", async (req, res) => {
 });
 
 // Delete a question
-// router.delete("/:questionId", passport.authenticate("jwt", {session: false}), async (req, res) => {
-    // if question
-// });
+router.delete("/:questionId", passport.authenticate("jwt", {session: false}), async (req, res) => {
+    try {
+        let question = await Question.findById(req.params.questionId);
+        if (question.user.toString() !== req.user.id) {
+            return res.status(401).json({
+                notAuthorized: "User not authorized"
+            });
+        }
+        await question.remove();
+        res.json({
+            success: true
+        })
+    } catch(err) {
+        res.status(404).json({
+            questionNotFound: "Question not found"
+        })
+    }
+});
 
 
 module.exports = router;
