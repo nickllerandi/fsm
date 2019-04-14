@@ -61,7 +61,10 @@ router.post("/", passport.authenticate("jwt", {session:false}), async (req, res)
              const updatedProfile = await Profile.findOneAndUpdate(
                 {user: req.user.id},
                 {$set: profileFields},
-                {new: true }
+                {
+                    new: true,
+                    useFindAndModify: false
+                }
             );
             res.json(updatedProfile);
         } else {
