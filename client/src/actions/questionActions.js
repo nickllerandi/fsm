@@ -55,5 +55,15 @@ export const getUserQuestions = userId => async dispatch => {
     }
 };
 
-
+export const deleteQuestion = (id, history) => async dispatch => {
+    try {
+        await axios.delete(`/api/questions/${id}`);
+        history.push("/");
+    } catch (err) {
+        dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+        })
+    }
+};
 

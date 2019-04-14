@@ -1,4 +1,8 @@
-import {GET_QUESTIONS, GET_QUESTION, GET_USER_QUESTIONS} from "../actions/types";
+import {
+    GET_QUESTIONS, 
+    GET_QUESTION, 
+    GET_USER_QUESTIONS
+} from "../actions/types";
 
 const initialState = {
     questions: [],

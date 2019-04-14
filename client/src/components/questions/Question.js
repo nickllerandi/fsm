@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 
-import {getQuestion} from "../../actions/questionActions";
+import {getQuestion, deleteQuestion} from "../../actions/questionActions";
 
 class Question extends Component {
     componentDidMount() {
@@ -9,7 +9,7 @@ class Question extends Component {
     }
 
     deleteQuestion(questionId) {
-        console.log(questionId);
+        this.props.deleteQuestion(questionId, this.props.history);
     }
 
     render() {
@@ -36,4 +36,4 @@ const mapStateToProps = state => ({
     authReducer: state.authReducer
 });
 
-export default connect(mapStateToProps, {getQuestion})(Question);
+export default connect(mapStateToProps, {getQuestion, deleteQuestion})(Question);
