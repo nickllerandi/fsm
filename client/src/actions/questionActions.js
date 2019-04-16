@@ -4,7 +4,8 @@ import {
     GET_QUESTIONS,
     GET_QUESTION,
     GET_USER_QUESTIONS,
-    GET_ERRORS
+    GET_ERRORS,
+    CLEAR_ERRORS
 } from "./types";
 
 export const getQuestions = () => async dispatch => {
@@ -78,4 +79,11 @@ export const likeQuestion = id => async dispatch => {
         })
     }
 }
+
+// Clear errors
+export const clearErrors = () => {
+    return {
+      type: CLEAR_ERRORS
+    };
+  };
 

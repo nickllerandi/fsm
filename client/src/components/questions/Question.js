@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 
-import {getQuestion, deleteQuestion, likeQuestion} from "../../actions/questionActions";
+import {getQuestion, deleteQuestion, likeQuestion, clearErrors} from "../../actions/questionActions";
 
 class Question extends Component {
     constructor() {
@@ -20,6 +20,10 @@ class Question extends Component {
         if (nextProps.errorReducer) {
             this.setState({errors: nextProps.errorReducer})
         }
+    }
+
+    componentWillUnmount() {
+        this.props.clearErrors();
     }
 
     deleteQuestion(questionId) {
@@ -64,4 +68,4 @@ const mapStateToProps = state => ({
     errorReducer: state.errorReducer
 });
 
-export default connect(mapStateToProps, {getQuestion, deleteQuestion, likeQuestion})(Question);
+export default connect(mapStateToProps, {getQuestion, deleteQuestion, likeQuestion, clearErrors})(Question);
