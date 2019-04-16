@@ -103,5 +103,30 @@ router.delete("/:questionId", passport.authenticate("jwt", {session: false}), as
     }
 });
 
+// Like a question
+router.post("/like/:questionId", passport.authenticate("jwt", {session: false}), async (req, res) => {
+    try {
+        let question = await Question.findById(req.params.questionId);
+        
+        if (question.likes.filter(like => {
+            return like.user.toString() === req.user.id;
+        }).length > 0) {
+            return res.status(404).json({
+                alreadyLiked: "You already liked this post"
+            })
+        }   
+
+        question.likes.unshift({
+            user: req.user.id
+        });
+
+        await question.save()
+        res.json(question)
+    } catch(err) {
+        res.status(404).json({
+            questionNotFound: "Question not found"
+        })
+    }
+});
 
 module.exports = router;

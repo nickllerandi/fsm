@@ -67,3 +67,15 @@ export const deleteQuestion = (id, history) => async dispatch => {
     }
 };
 
+export const likeQuestion = id => async dispatch => {
+    try {
+        await axios.post(`/api/questions/like/${id}`);
+        dispatch(getQuestion(id))
+    } catch(err) {
+        dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+        })
+    }
+}
+
