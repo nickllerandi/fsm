@@ -4,7 +4,8 @@ import {
     GET_QUESTIONS,
     GET_QUESTION,
     GET_USER_QUESTIONS,
-    GET_ERRORS
+    GET_ERRORS,
+    CLEAR_ERRORS
 } from "./types";
 
 export const getQuestions = () => async dispatch => {
@@ -66,4 +67,23 @@ export const deleteQuestion = (id, history) => async dispatch => {
         })
     }
 };
+
+export const likeQuestion = id => async dispatch => {
+    try {
+        await axios.post(`/api/questions/like/${id}`);
+        dispatch(getQuestion(id))
+    } catch(err) {
+        dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+        })
+    }
+}
+
+// Clear errors
+export const clearErrors = () => {
+    return {
+      type: CLEAR_ERRORS
+    };
+  };
 
