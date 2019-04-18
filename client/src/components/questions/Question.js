@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 
-import Answer from "./Answer"
+import Answer from "./Answer";
+import AnswerFeed from "./AnswerFeed";
 
 import {getQuestion, deleteQuestion, likeQuestion, clearErrors} from "../../actions/questionActions";
 
@@ -15,7 +16,6 @@ class Question extends Component {
 
     componentDidMount() {
         this.props.getQuestion(this.props.match.params.id);
-        // console.log(this.props.questionReducer.question.likes.length)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -60,6 +60,7 @@ class Question extends Component {
                 null
                 }
                 <Answer/>
+                <AnswerFeed/>
             </div>
         )
     }
