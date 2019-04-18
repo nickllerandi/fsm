@@ -161,7 +161,6 @@ router.delete("/answer/delete/:questionId/:answerId", passport.authenticate("jwt
     try {
         let question = await Question.findById(req.params.questionId);
 
-        // res.json(question)
         // Check if answer exists
         if (question.answers.filter(answer => answer._id.toString() === req.params.answerId).length === 0) {
             res.status(404).json({
