@@ -156,4 +156,24 @@ router.post("/answer/:questionId", passport.authenticate("jwt", {session: false}
     }
 });
 
+// // Delete an answer
+// router.delete("/answer/:questionId", passport.authenticate("jwt", {session: false}), async (req, res) => {
+//     try {
+//         let question = await Question.findById(req.params.questionId);
+
+//         question.answers.unshift({
+//             user: req.user.id,
+//             name: req.body.name,
+//             body: req.body.body
+//         });
+
+//         await question.save()
+//         res.json(question)
+//     } catch(err) {
+//         res.status(404).json({
+//             questionNotFound: "Question not found"
+//         })
+//     }
+// });
+
 module.exports = router;
