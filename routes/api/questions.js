@@ -8,6 +8,7 @@ const keys = require("../../config/keys");
 
 // Validation
 const validateCreateQuestionInput = require("../../validation/createQuestion");
+const validateAddAnswerInput = require("../../validation/addAnswer");
 
 // Question Model
 const Question = require("../../models/Question");
@@ -128,5 +129,51 @@ router.post("/like/:questionId", passport.authenticate("jwt", {session: false}),
         })
     }
 });
+
+// Answer a question
+router.post("/answer/:questionId", passport.authenticate("jwt", {session: false}), async (req, res) => {
+    const {errors, isValid} = validateAddAnswerInput(req.body);
+
+    if (!isValid) {
+        res.status(400).json(errors);
+    } else {
+        try {
+            let question = await Question.findById(req.params.questionId);
+    
+            question.answers.unshift({
+                user: req.user.id,
+                name: req.body.name,
+                body: req.body.body
+            });
+    
+            await question.save()
+            res.json(question)
+        } catch(err) {
+            res.status(404).json({
+                questionNotFound: "Question not found"
+            })
+        }
+    }
+});
+
+// // Delete an answer
+// router.delete("/answer/:questionId", passport.authenticate("jwt", {session: false}), async (req, res) => {
+//     try {
+//         let question = await Question.findById(req.params.questionId);
+
+//         question.answers.unshift({
+//             user: req.user.id,
+//             name: req.body.name,
+//             body: req.body.body
+//         });
+
+//         await question.save()
+//         res.json(question)
+//     } catch(err) {
+//         res.status(404).json({
+//             questionNotFound: "Question not found"
+//         })
+//     }
+// });
 
 module.exports = router;
