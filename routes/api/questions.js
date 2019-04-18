@@ -8,6 +8,7 @@ const keys = require("../../config/keys");
 
 // Validation
 const validateCreateQuestionInput = require("../../validation/createQuestion");
+const validateAddCommentInput = require("../../validation/addComment");
 
 // Question Model
 const Question = require("../../models/Question");
@@ -126,6 +127,31 @@ router.post("/like/:questionId", passport.authenticate("jwt", {session: false}),
         res.status(404).json({
             questionNotFound: "Question not found"
         })
+    }
+});
+
+// Answer a question
+router.post("/answer/:questionId", passport.authenticate("jwt", {session: false}), async (req, res) => {
+    const {errors, isValid} = validateAddCommentInput(req.body);
+
+    if (!isValid) {
+        res.status(400).json(errors);
+    } else {
+        try {
+            let question = await Question.findById(req.params.questionId);
+    
+            question.answers.unshift({
+                user: req.user.id,
+                body: req.body.body
+            });
+    
+            await question.save()
+            res.json(question)
+        } catch(err) {
+            res.status(404).json({
+                questionNotFound: "Question not found"
+            })
+        }
     }
 });
 
