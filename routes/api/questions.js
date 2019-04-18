@@ -156,24 +156,34 @@ router.post("/answer/:questionId", passport.authenticate("jwt", {session: false}
     }
 });
 
-// // Delete an answer
-// router.delete("/answer/:questionId", passport.authenticate("jwt", {session: false}), async (req, res) => {
-//     try {
-//         let question = await Question.findById(req.params.questionId);
+// Delete an answer
+router.delete("/answer/delete/:questionId/:answerId", passport.authenticate("jwt", {session: false}), async (req, res) => {
+    try {
+        let question = await Question.findById(req.params.questionId);
 
-//         question.answers.unshift({
-//             user: req.user.id,
-//             name: req.body.name,
-//             body: req.body.body
-//         });
+        // res.json(question)
+        // Check if answer exists
+        if (question.answers.filter(answer => answer._id.toString() === req.params.answerId).length === 0) {
+            res.status(404).json({
+                answerNotFound: "Answer not found"
+            })
+        } else {
+            // Get removeIndex
+            const removeIndex = question.answers
+            .map(answer => answer._id.toString())
+            .indexOf(req.params.answerId);
 
-//         await question.save()
-//         res.json(question)
-//     } catch(err) {
-//         res.status(404).json({
-//             questionNotFound: "Question not found"
-//         })
-//     }
-// });
+            // remove from answers array
+            question.answers.splice(removeIndex, 1);
+
+            await question.save()
+            res.json(question)
+        }
+    } catch(err) {
+        res.status(404).json({
+            questionNotFound: "Question not found"
+        })
+    }
+});
 
 module.exports = router;
