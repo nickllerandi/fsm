@@ -80,6 +80,21 @@ export const likeQuestion = id => async dispatch => {
     }
 }
 
+export const addAnswer = (questionId, newAnswer) => async dispatch => {
+    try {
+        const res = await axios.post(`/api/questions/answer/${questionId}`, newAnswer);
+        dispatch({
+            type: GET_QUESTION,
+            payload: res.data
+        })
+    } catch (err) {
+        dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+        })
+    }
+};
+
 // Clear errors
 export const clearErrors = () => {
     return {

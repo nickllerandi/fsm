@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 
+import Answer from "./Answer"
+
 import {getQuestion, deleteQuestion, likeQuestion, clearErrors} from "../../actions/questionActions";
 
 class Question extends Component {
@@ -57,6 +59,7 @@ class Question extends Component {
                 ) :
                 null
                 }
+                <Answer/>
             </div>
         )
     }

@@ -1,7 +1,7 @@
 const Validator = require("validator");
 const isEmpty = require("./isEmpty");
 
-const validateAddCommentInput = (reqBody) => {
+const validateAddAnswerInput = (reqBody) => {
     let errors = {};
 
     reqBody.body = !isEmpty(reqBody.body) ? reqBody.body : "";
@@ -16,4 +16,4 @@ const validateAddCommentInput = (reqBody) => {
     }
 }
 
-module.exports = validateAddCommentInput;
+module.exports = validateAddAnswerInput;
