@@ -172,11 +172,15 @@ router.delete("/answer/delete/:questionId/:answerId", passport.authenticate("jwt
             .map(answer => answer._id.toString())
             .indexOf(req.params.answerId);
 
-            // remove from answers array
-            question.answers.splice(removeIndex, 1);
+            if (question.answers[removeIndex].user.toString() !== req.user.id.toString()) {
+                res.status(400).json({notAuthorized: "Cannot delete someone else's answer"})
+            } else {
+                // remove from answers array
+                question.answers.splice(removeIndex, 1);
 
-            await question.save()
-            res.json(question)
+                await question.save()
+                res.json(question)
+            }
         }
     } catch(err) {
         res.status(404).json({

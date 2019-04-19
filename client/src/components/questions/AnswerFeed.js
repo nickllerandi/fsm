@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
+// Actions
+import {deleteAnswer} from '../../actions/questionActions';
+
 class AnswerFeed extends Component {
     onAnswerDeleteClick(answerId) {
-        console.log(answerId);
+        this.props.deleteAnswer(this.props.questionReducer.question._id, answerId)
     }
 
     render() {
@@ -36,4 +39,4 @@ const mapStateToProps = state => ({
     questionReducer: state.questionReducer
 });
 
-export default connect(mapStateToProps)(AnswerFeed);
+export default connect(mapStateToProps, {deleteAnswer})(AnswerFeed);
