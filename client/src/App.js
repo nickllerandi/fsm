@@ -31,9 +31,6 @@ import Question from "./components/questions/Question";
 import Profile from "./components/profiles/Profile";
 import ProfileEdit from "./components/profiles/ProfileEdit";
 
-// Misc
-import Tags from "./components/tags/Tags";
-
 if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
     const decoded = jwtDecode(localStorage.jwtToken);
@@ -48,7 +45,6 @@ class App extends Component {
                     <div className="App">
                         <Navbar/>
                         <Route exact path="/" component={Homepage}/>
-                        <Route exact path="/tags" component={Tags}/>
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/ask" component={Ask}/>

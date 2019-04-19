@@ -37,8 +37,7 @@ class Navbar extends Component {
 
         return (
             <nav className="Navbar">
-                <Link to="/">FSM</Link> - Search -
-                <Link to="/tags">Tags</Link>
+                <Link to="/">FSM</Link>
                 {isAuthenticated ? inState : outState}
             </nav>
         )
