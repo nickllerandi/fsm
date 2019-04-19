@@ -87,13 +87,28 @@ export const addAnswer = (questionId, newAnswer) => async dispatch => {
             type: GET_QUESTION,
             payload: res.data
         })
-    } catch (err) {
+    } catch(err) {
         dispatch({
             type: GET_ERRORS,
             payload: err.response.data
         })
     }
 };
+
+export const deleteAnswer = (questionId, answerId) => async dispatch => {
+    try {
+        const res = await axios.delete(`/api/questions/answer/delete/${questionId}/${answerId}`);
+        dispatch({
+            type: GET_QUESTION,
+            payload: res.data
+        })
+    } catch(err) {
+        dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+        })
+    }
+}
 
 // Clear errors
 export const clearErrors = () => {
