@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import {Provider} from "react-redux";
 import jwtDecode from "jwt-decode";
+import styled from "styled-components"
 
 // Utils / Actions
 import {setAuthToken} from "./utils/setAuthToken";
@@ -37,12 +38,18 @@ if (localStorage.jwtToken) {
     store.dispatch(setCurrentUser(decoded));
 }
 
+const AppWrapper = styled.div`
+    nav {
+        background: #FAFAFB;
+    }
+`;
+
 class App extends Component {
     render() {
         return (
             <Provider store={store}>
                 <Router>
-                    <div className="App">
+                    <AppWrapper>
                         <Navbar/>
                         <Route exact path="/" component={Homepage}/>
                         <Route exact path="/register" component={Register}/>
@@ -52,7 +59,7 @@ class App extends Component {
                         <Route exact path="/users/:id/:name" component={Profile}/>
                         <Route exact path="/users/:id/:name/edit" component={ProfileEdit}/>
                         <Footer/>
-                    </div>
+                    </AppWrapper>
                 </Router>
             </Provider>
         );
