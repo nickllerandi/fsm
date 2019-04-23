@@ -10,8 +10,8 @@ import {setCurrentUser} from "./actions/authActions";
 // Redux Store
 import store from "./store";
 
-// CSS
-import './App.css';
+// CSS / Global Styles
+import GlobalStyle from './Global'
 
 // Components
 // Layout
@@ -52,6 +52,7 @@ class App extends Component {
                         <Route exact path="/users/:id/:name" component={Profile}/>
                         <Route exact path="/users/:id/:name/edit" component={ProfileEdit}/>
                         <Footer/>
+                        <GlobalStyle/>
                     </div>
                 </Router>
             </Provider>

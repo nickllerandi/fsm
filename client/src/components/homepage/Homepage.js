@@ -1,22 +1,15 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+
+// Actions
 import {getQuestions} from "../../actions/questionActions";
 
 // Components
 import AllQuestions from "../questions/AllQuestions";
 
-import styled from "styled-components"
-
-const Button = styled.button`
-    background: indigo;
-    padding: 5px 10px;
-    border-radius: 4px;
-    color: white;
-    font-size: 2rem;
-    border: none;
-    ${props => props.type === 'cancel' && 'background: tomato'}
-`;
+// Styled Components
+import {Heading, Button} from '../../elements'
 
 class Homepage extends Component {
     componentDidMount() {
@@ -29,12 +22,11 @@ class Homepage extends Component {
 
         return (
             <div className="Landing">
-                <h1>Fullstack Musician</h1>
+                <Heading>Full Stack Musician</Heading>
                 {name ? <h2>Hi {name}</h2> : null}
                 <Button>
                     <Link to="/ask">Ask a Question</Link>
                 </Button>
-                <Button type='cancel'>Cancel</Button>
                 <AllQuestions
                     questions={questions}
                 />

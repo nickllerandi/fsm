@@ -6,14 +6,14 @@ import styled from 'styled-components'
 import {logoutUser} from "../../actions/authActions";
 import {clearCurrentProfile} from "../../actions/profileActions";
 
-// import fsmLogo from '../../img/fsm-green.png'
+import fsmLogo from '../../img/fsm-green.png'
 
 const HeaderNav = styled.header`
     min-width: auto;
     box-shadow: 0 1px 0 rgba(12,13,14,0.1), 0 1px 6px rgba(59,64,69,0.1);
     width: 100%;
     background-color: #fafafb;
-    height: 50px;
+    height: 90px;
     border-top: 3px solid #6BD7DB;
 
     .container {
@@ -103,12 +103,16 @@ class Navbar extends Component {
 
         const inState = (
             <ul>
-                <Link to={`/users/${user.id}/${user.name}`}>
-                    {user.name}
-                </Link>
-                <button onClick={this.onLogoutClick}>
-                    Logout
-                </button>
+                <li>
+                    <Link to={`/users/${user.id}/${user.name}`}>
+                        {user.name}
+                    </Link>
+                </li>
+                <li>
+                    <Link to="#" onClick={this.onLogoutClick}>
+                        Logout
+                    </Link>
+                </li>
             </ul>
         );
 
@@ -118,9 +122,11 @@ class Navbar extends Component {
                 <div className="container">
                     <div className="main">
                         <Link to="/" className="logo">
-                            <span className="fsm_logo">
-                                Full Stack Musician
-                            </span>
+                            <img 
+                                src={fsmLogo} 
+                                className="fsm_logo"
+                                alt="Full Stack Musician"
+                            />
                         </Link>
                     </div>
                     {isAuthenticated ? inState : outState}
