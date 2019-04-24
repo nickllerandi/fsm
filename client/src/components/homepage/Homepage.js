@@ -22,7 +22,7 @@ class Homepage extends Component {
 
         return (
             <div className="Landing">
-                <Heading>Full Stack Musician</Heading>
+                <Heading>Recent Questions</Heading>
                 {name ? <h2>Hi {name}</h2> : null}
                 <Button>
                     <Link to="/ask">Ask a Question</Link>
