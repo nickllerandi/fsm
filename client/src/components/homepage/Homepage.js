@@ -1,10 +1,15 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+
+// Actions
 import {getQuestions} from "../../actions/questionActions";
 
 // Components
 import AllQuestions from "../questions/AllQuestions";
+
+// Styled Components
+import {Heading, Button} from '../../elements'
 
 class Homepage extends Component {
     componentDidMount() {
@@ -17,9 +22,11 @@ class Homepage extends Component {
 
         return (
             <div className="Landing">
-                <h1>Fullstack Musician</h1>
+                <Heading>Full Stack Musician</Heading>
                 {name ? <h2>Hi {name}</h2> : null}
-                <Link to="/ask">Ask a Question</Link>
+                <Button>
+                    <Link to="/ask">Ask a Question</Link>
+                </Button>
                 <AllQuestions
                     questions={questions}
                 />
