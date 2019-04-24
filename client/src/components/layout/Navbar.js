@@ -48,7 +48,7 @@ class Navbar extends Component {
 
 
         return (
-            <HeaderNav>
+            <StyledNavbar>
                 <div className="container">
                     <div className="main">
                         <Link to="/" className="logo">
@@ -61,12 +61,12 @@ class Navbar extends Component {
                     </div>
                     {isAuthenticated ? inState : outState}
                 </div>
-            </HeaderNav>
+            </StyledNavbar>
         )
     }
 }
 
-const HeaderNav = styled.header`
+const StyledNavbar = styled.header`
     min-width: auto;
     ${elevation[1]};
     width: 100%;
