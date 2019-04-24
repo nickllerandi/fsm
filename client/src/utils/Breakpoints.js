@@ -8,7 +8,7 @@ const sizes = {
 
 export const above = Object.keys(sizes).reduce((acc, label) => {
     acc[label] = (...args) => css`
-      @media (max-width: ${sizes[label] / 16}em) {
+      @media (min-width: ${sizes[label]}px) {
         ${css(...args)}
       }
     `
@@ -17,7 +17,7 @@ export const above = Object.keys(sizes).reduce((acc, label) => {
 
   export const below = Object.keys(sizes).reduce((acc, label) => {
     acc[label] = (...args) => css`
-      @media (max-width: ${sizes[label] / 16}em) {
+      @media (max-width: ${sizes[label]}px) {
         ${css(...args)}
       }
     `
