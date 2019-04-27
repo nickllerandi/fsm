@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {darken} from 'polished'
-import {blue, elevation} from '../utils'
+import {blue, green, elevation} from '../utils'
 
 export const Button = styled.button`
     padding: 5px 20px;
@@ -17,8 +17,12 @@ export const Button = styled.button`
         ${elevation[2]};
         background: ${darken(0.2, blue)};
     }
+
+    &:focus {outline:0;}
 `;
 
-export const CancelButton = styled(Button)`
-    background: tomato;
+const SignUpButton = styled(Button)`
+    background: ${green};
 `;
+
+Button.SignUp = SignUpButton;

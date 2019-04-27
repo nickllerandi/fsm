@@ -18,7 +18,6 @@ class Homepage extends Component {
 
     render() {
         const {questions} = this.props.questionReducer;
-        const {name} = this.props.authReducer.user;
 
         return (
             <div className="Landing">
