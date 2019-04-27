@@ -18,15 +18,13 @@ class Homepage extends Component {
 
     render() {
         const {questions} = this.props.questionReducer;
-        const {name} = this.props.authReducer.user;
 
         return (
             <div className="Landing">
-                <Heading>Full Stack Musician</Heading>
-                {name ? <h2>Hi {name}</h2> : null}
-                <Button>
-                    <Link to="/ask">Ask a Question</Link>
-                </Button>
+                <Heading>Recent Questions</Heading>
+                <Link to="/ask">
+                    <Button>Ask a Question</Button>
+                </Link>
                 <AllQuestions
                     questions={questions}
                 />

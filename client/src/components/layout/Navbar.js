@@ -8,6 +8,7 @@ import {clearCurrentProfile} from "../../actions/profileActions";
 
 import fsmLogo from '../../img/fsm-green2.png'
 import {lightblack, green, elevation, fixed} from '../../utils'
+import {Button} from '../../elements'
 
 class Navbar extends Component {
     onLogoutClick = (e) => {
@@ -25,9 +26,11 @@ class Navbar extends Component {
                 <li>
                     <Link to="/login">Login</Link>    
                 </li>
-                <li>
-                    <Link to="/register">Signup</Link>
-                </li>
+                    <Link to="/register">
+                        <Button.SignUp>
+                            Sign Up
+                        </Button.SignUp>
+                    </Link>
             </ul>
         );
 
