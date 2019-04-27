@@ -9,6 +9,7 @@ export const Button = styled.button`
     font-size: 1rem;
     border: none;
     background: ${blue};
+    cursor: pointer;
     ${elevation[1]};
     transition: 0.3s ease all;
 

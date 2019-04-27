@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
 
     main {
         max-width: 1264px;
-        width: 100%;
+        width: 90%;
         height: 100%;
         margin: 0 auto;
     }

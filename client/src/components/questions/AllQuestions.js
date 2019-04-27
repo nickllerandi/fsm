@@ -13,9 +13,11 @@ class AllQuestions extends Component {
                 {questions.map(question => {
                     return (
                         <Card key={question._id}>
-                            <Link to={`/questions/${question._id}`}>{question.title}</Link> -
+                            <Link to={`/questions/${question._id}`}>
+                                {question.title}
+                            </Link> -
                             {question.user ? 
-                                <Link to={`/users/${question.user._id}/${question.user.name}`}>{question.user.name}</Link> :
+                                <Link to={`/users/${question.user._id}/${question.user.name}`}> {question.user.name}</Link> :
                                 'User deleted profile :('
                             }
                         </Card>

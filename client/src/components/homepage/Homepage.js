@@ -23,10 +23,9 @@ class Homepage extends Component {
         return (
             <div className="Landing">
                 <Heading>Recent Questions</Heading>
-                {name ? <h2>Hi {name}</h2> : null}
-                <Button>
-                    <Link to="/ask">Ask a Question</Link>
-                </Button>
+                <Link to="/ask">
+                    <Button>Ask a Question</Button>
+                </Link>
                 <AllQuestions
                     questions={questions}
                 />
