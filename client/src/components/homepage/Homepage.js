@@ -20,7 +20,7 @@ class Homepage extends Component {
         const {questions} = this.props.questionReducer;
 
         return (
-            <div className="Landing">
+            <div className="RecentQuestions">
                 <Heading>Recent Questions</Heading>
                 <Link to="/ask">
                     <Button>Ask a Question</Button>

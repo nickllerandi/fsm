@@ -24,6 +24,18 @@ const GlobalStyle = createGlobalStyle`
         width: 90%;
         height: 100%;
         margin: 0 auto;
+
+        .mainbar {
+            width: 75%;
+            float: left;
+        }
+
+        .sidebar {
+            width: 25%;
+            height: 50rem;
+            background: lightgrey;
+            float: right;
+        }
     }
 `;
 

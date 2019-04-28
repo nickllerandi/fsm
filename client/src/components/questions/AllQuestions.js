@@ -4,6 +4,8 @@ import styled from 'styled-components'
 
 // Styled Components / Utils
 import {lighterblack, black, blue} from '../../utils'
+import {darken} from 'polished'
+
 // import {Card} from '../../elements'
 
 class AllQuestions extends Component {
@@ -27,8 +29,11 @@ class AllQuestions extends Component {
                                     </Link>
                                 </h3>
                                 <div className='started'>
-                                    {question.user ? 
-                                        <Link to={`/users/${question.user._id}/${question.user.name}`}> {question.user.name}</Link> :
+                                    {question.user ? (
+                                        <Link to={`/users/${question.user._id}/${question.user.name}`}>
+                                            {question.user.name}
+                                        </Link>
+                                    ) :
                                         'User deleted profile :('
                                     }
                                 </div>
@@ -66,16 +71,32 @@ const Card = styled.div`
             font-weight: 400;
             margin: 0 0 .35em 0;
             line-height: 1.3;
+
+            a {
+                text-decoration: none;
+                color: ${black};
+            }
+
+            a:hover {
+                color: ${blue}
+            }
         }
-    }
 
-    a {
-        text-decoration: none;
-        color: ${black};
-    }
-
-    a:hover {
-        color: ${blue}
+        .started {
+            width: auto;
+            line-height: inherit;
+            padding-top: 4px;
+            float: right;
+            
+            a {
+                text-decoration: none;
+                color: ${blue};
+                
+                &:hover {
+                    color: ${darken(0.2, blue)};
+                }
+            }
+        }
     }
 `;
 
