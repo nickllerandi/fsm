@@ -1,5 +1,6 @@
 import {createGlobalStyle} from 'styled-components'
 import {normalize} from 'polished'
+import {elevation} from './utils'
 
 const GlobalStyle = createGlobalStyle`
     ${normalize()}
@@ -33,8 +34,15 @@ const GlobalStyle = createGlobalStyle`
         .sidebar {
             width: 25%;
             height: 50rem;
-            background: lightgrey;
             float: right;
+
+            .ad {
+                padding: 1rem;
+                margin: 1rem;
+                height: 11rem;
+                border: 1px solid #d6d9dc; 
+                ${elevation[1]};
+            }
         }
     }
 `;

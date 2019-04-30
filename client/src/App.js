@@ -55,7 +55,12 @@ class App extends Component {
                                 <Route exact path="/users/:id/:name/edit" component={ProfileEdit}/>
                             </div>
                             <div className='sidebar'>
-                                Here is the sidebar
+                                <div className='ad'>
+                                    I'm an ad
+                                </div>
+                                <div className='ad'>
+                                    I'm also an ad
+                                </div>
                             </div>
                         </main>
                         <Footer/>
