@@ -4,23 +4,28 @@ import {elevation} from './utils'
 
 const GlobalStyle = createGlobalStyle`
     ${normalize()}
-    html {
-        box-sizing: border-box;
+
+    * {
+        margin: 0;
+        padding: 0;
     }
 
     *, *:before, *:after {
         box-sizing: inherit;
     }
 
+    html {
+        box-sizing: border-box;
+    }
+
     body {
-        margin: 0;
         padding: 90px 0 0;
         font-family: Arial, Helvetica, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
 
-    main {
+    .App {
         max-width: 1264px;
         width: 90%;
         height: 100%;
@@ -33,17 +38,17 @@ const GlobalStyle = createGlobalStyle`
 
         .sidebar {
             width: 25%;
-            height: 50rem;
             float: right;
-
-            .ad {
-                padding: 1rem;
-                margin: 1rem;
-                height: 11rem;
-                border: 1px solid #d6d9dc; 
-                ${elevation[1]};
-            }
         }
+    }
+
+    .ad {
+        padding: 1rem;
+        margin: 1rem;
+        height: 11rem;
+        width: 15rem;
+        border: 1px solid #d6d9dc; 
+        ${elevation[1]};
     }
 `;
 

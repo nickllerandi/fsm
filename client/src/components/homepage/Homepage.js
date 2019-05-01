@@ -21,7 +21,7 @@ class Homepage extends Component {
 
         return (
             <div className="RecentQuestions">
-                <Heading>Recent Questions TEST</Heading>
+                <Heading>Recent Questions</Heading>
                 <Link to="/ask">
                     <Button>Ask a Question</Button>
                 </Link>

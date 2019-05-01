@@ -55,10 +55,10 @@ class App extends Component {
                                 <Route exact path="/users/:id/:name/edit" component={ProfileEdit}/>
                             </div>
                             <div className='sidebar'>
-                                <div className='ad'>
+                                <div className='ad ad--1'>
                                     I'm an ad
                                 </div>
-                                <div className='ad'>
+                                <div className='ad ad--2'>
                                     I'm also an ad
                                 </div>
                             </div>
