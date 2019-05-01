@@ -45,13 +45,23 @@ class App extends Component {
                     <div className="App">
                         <Navbar/>
                         <main>
-                            <Route exact path="/" component={Homepage}/>
-                            <Route exact path="/register" component={Register}/>
-                            <Route exact path="/login" component={Login}/>
-                            <Route exact path="/ask" component={Ask}/>
-                            <Route exact path="/questions/:id" component={Question}/>
-                            <Route exact path="/users/:id/:name" component={Profile}/>
-                            <Route exact path="/users/:id/:name/edit" component={ProfileEdit}/>
+                            <div className='mainbar'>
+                                <Route exact path="/" component={Homepage}/>
+                                <Route exact path="/register" component={Register}/>
+                                <Route exact path="/login" component={Login}/>
+                                <Route exact path="/ask" component={Ask}/>
+                                <Route exact path="/questions/:id" component={Question}/>
+                                <Route exact path="/users/:id/:name" component={Profile}/>
+                                <Route exact path="/users/:id/:name/edit" component={ProfileEdit}/>
+                            </div>
+                            <div className='sidebar'>
+                                <div className='ad ad--1'>
+                                    I'm an ad
+                                </div>
+                                <div className='ad ad--2'>
+                                    I'm also an ad
+                                </div>
+                            </div>
                         </main>
                         <Footer/>
                         <GlobalStyle/>

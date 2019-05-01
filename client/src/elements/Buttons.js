@@ -23,6 +23,10 @@ export const Button = styled.button`
 
 const SignUpButton = styled(Button)`
     background: ${green};
+    
+    &:hover {
+        background: ${darken(0.2, green)};
+    }
 `;
 
 Button.SignUp = SignUpButton;

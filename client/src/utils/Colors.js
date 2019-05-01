@@ -1,4 +1,4 @@
-export const green = '#92EEC4'
+export const green = '#5EC5B6'
 export const blue = '#85DAEF'
 export const lightblue = '#8EEEEF'
 export const black = '#242729'
