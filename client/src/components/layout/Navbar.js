@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import styled from 'styled-components'
-import {darken} from 'polished'
+import {darken, lighten} from 'polished'
 
 // REDUX ACTIONS
 import {logoutUser} from "../../actions/authActions";
@@ -14,7 +14,7 @@ import mag from '../../img/sprite.svg'
 
 // UTILS
 import {Button} from '../../elements'
-import {primary, lighterblack} from '../../utils'
+import {primary, black, lightblack, lighterblack, white} from '../../utils'
 
 class Navbar extends Component {
     constructor() {
@@ -40,10 +40,10 @@ class Navbar extends Component {
 
         const outState = (
             <nav className='user-nav'>
-                <div className='user-nav__login'>
+                <div className='user-nav__auth'>
                     <Link to="/login">Login</Link>
                 </div>
-                <div className='user-nav__register'>
+                <div className='user-nav__auth-action'>
                     <Link to="/register">
                         <Button.SignUp>
                             Sign Up
@@ -55,12 +55,12 @@ class Navbar extends Component {
 
         const inState = (
             <nav className='user-nav'>
-                <div className='user-nav__user-name'>
+                <div className='user-nav__auth'>
                     <Link to={`/users/${user.id}/${user.name}`}>
                         {user.name}
                     </Link>
                 </div>
-                <div className='user-nav__logout'>
+                <div className='user-nav__auth-action'>
                     <Link to="#" onClick={this.onLogoutClick}>
                         Logout
                     </Link>
@@ -87,7 +87,7 @@ class Navbar extends Component {
                         value={this.state.name}
                         onChange={this.onChange}
                     />
-                    <button classNmae='search__button'>
+                    <button className='search__button'>
                         <svg className='search__icon'>
                             <use xlinkHref={`${mag}#icon-magnifying-glass`} />
                         </svg>
@@ -105,38 +105,51 @@ const NavbarStyled = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 1.4rem;
 
     .logo {
-        height: 3.25rem;
-        margin-left: 3rem;
+        height: 8.25rem;
+        margin: 1rem 0 0 2.5rem;
     }
 
     .search {
-        background-color: orangered;
         flex: 0 0 40%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* background-color: red; */
 
         &__input {
             font-family: inherit;
             font-size: inherit;
-            background-color: ${lighterblack};
-            border: none;
+            background-color: ${white};
+            /* border-color: ${primary}; */
             color: inherit;
             padding: .7rem 2rem;
             border-radius: 100px;
             width: 90%;
             transition: all .2s;
-            margin-right: -3.5rem;
+            margin-right: -3.25rem;
 
             &:focus {
                 outline: none;
                 width: 100%;
-                background-color: ${darken(0.09, lighterblack)};
+                /* background-color: ${darken(0.05, white)}; */
             }
+
+            &::-webkit-input-placeholder {
+                font-weight: 100;
+                color: ${lightblack};
+            }
+        }
+
+        &__input:focus + &__button {
+            background-color: red;
         }
 
         &__button {
             border: none;
-            background-color: ${lighterblack};
+            background-color: ${white};
 
             &:focus {
                 outline: none;
@@ -150,11 +163,32 @@ const NavbarStyled = styled.header`
         &__icon {
             height: 2rem;
             width: 2rem;
+            fill: ${black};
         }
     }
 
     .user-nav {
-        background-color: greenyellow;
+        display: flex;
+        align-items: center;
+        align-self: stretch;
+        font-size: 1.4rem;
+
+        & > * {
+            padding: 0 2rem;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        & > *:hover {
+            background-color: ${darken(0.1, white)};
+        }
+
+        a, a:visited {
+            text-decoration: none;
+            color: ${black};
+        }
     }
 `;
 
