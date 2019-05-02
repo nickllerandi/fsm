@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {black, lighterblack, blue} from '../utils'
+import {black, lighterblack, primary} from '../utils'
 
 export const Card = styled.div`    
     padding: 12px 8px;
@@ -11,6 +11,6 @@ export const Card = styled.div`
     }
 
     a:hover {
-        color: ${blue}
+        color: ${primary}
     }
 `;

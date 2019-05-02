@@ -1,6 +1,6 @@
 import {createGlobalStyle} from 'styled-components'
 import {normalize} from 'polished'
-import {elevation} from './utils'
+import {black, white} from './utils'
 
 const GlobalStyle = createGlobalStyle`
     ${normalize()}
@@ -10,45 +10,26 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
     }
 
-    *, *:before, *:after {
+    *, 
+    *:before, 
+    *:after {
         box-sizing: inherit;
     }
 
     html {
         box-sizing: border-box;
+        font-size: 62.5%;
     }
 
     body {
-        padding: 90px 0 0;
         font-family: Arial, Helvetica, sans-serif;
+        font-weight: 400;
+        line-height: 1.6;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-    }
-
-    .App {
-        max-width: 1264px;
-        width: 90%;
-        height: 100%;
-        margin: 0 auto;
-
-        .mainbar {
-            width: 75%;
-            float: left;
-        }
-
-        .sidebar {
-            width: 25%;
-            float: right;
-        }
-    }
-
-    .ad {
-        padding: 1rem;
-        margin: 1rem;
-        height: 11rem;
-        width: 15rem;
-        border: 1px solid #d6d9dc; 
-        ${elevation[1]};
+        background-color: ${white};
+        color: ${black};
+        min-height: 100vh;
     }
 `;
 

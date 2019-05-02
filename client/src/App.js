@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import {Provider} from "react-redux";
 import jwtDecode from "jwt-decode";
+import styled from 'styled-components';
 
 // Utils / Actions
 import {setAuthToken} from "./utils/setAuthToken";
@@ -12,6 +13,7 @@ import store from "./store";
 
 // CSS / Global Styles
 import GlobalStyle from './Global'
+import {black, white} from './utils'
 
 // Components
 // Layout
@@ -42,10 +44,13 @@ class App extends Component {
         return (
             <Provider store={store}>
                 <Router>
-                    <div className="App">
+                    <AppWrapper>
                         <Navbar/>
-                        <main>
-                            <div className='mainbar'>
+                        <ContentWrapper>
+                            <SidebarWrapper>
+                                Navigation
+                            </SidebarWrapper>
+                            <MainbarWrapper>
                                 <Route exact path="/" component={Homepage}/>
                                 <Route exact path="/register" component={Register}/>
                                 <Route exact path="/login" component={Login}/>
@@ -53,23 +58,38 @@ class App extends Component {
                                 <Route exact path="/questions/:id" component={Question}/>
                                 <Route exact path="/users/:id/:name" component={Profile}/>
                                 <Route exact path="/users/:id/:name/edit" component={ProfileEdit}/>
-                            </div>
-                            <div className='sidebar'>
-                                <div className='ad ad--1'>
-                                    I'm an ad
-                                </div>
-                                <div className='ad ad--2'>
-                                    I'm also an ad
-                                </div>
-                            </div>
-                        </main>
+                            </MainbarWrapper>
+                        </ContentWrapper>
                         <Footer/>
                         <GlobalStyle/>
-                    </div>
+                    </AppWrapper>
                 </Router>
             </Provider>
         );
     }
 }
+
+const AppWrapper = styled.div`
+    max-width: 125rem;
+    margin: 4rem auto;
+    background-color: ${white};
+    min-height: 100vh;
+`;
+
+const ContentWrapper = styled.div`
+    display: flex;
+    margin-top: 30rem;
+`;
+
+const SidebarWrapper = styled.div`
+    background-color: ${black};
+    flex: 0 0 18%;
+    color: ${white};
+`;
+
+const MainbarWrapper = styled.div`
+    background-color: ${white};
+    flex: 1;
+`;
 
 export default App;

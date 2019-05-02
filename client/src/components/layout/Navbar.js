@@ -2,15 +2,32 @@ import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import styled from 'styled-components'
+import {darken} from 'polished'
 
+// REDUX ACTIONS
 import {logoutUser} from "../../actions/authActions";
 import {clearCurrentProfile} from "../../actions/profileActions";
 
+// ASSETS
 import fsmLogo from '../../img/fsm-green2.png'
-import {lightblack, green, elevation, fixed} from '../../utils'
+import mag from '../../img/sprite.svg'
+
+// UTILS
 import {Button} from '../../elements'
+import {primary, lighterblack} from '../../utils'
 
 class Navbar extends Component {
+    constructor() {
+        super();
+        this.state = {
+            search__input: ""
+        };
+    }
+
+    onChange = (e) => {
+        this.setState({[e.target.name]: e.target.value})
+    };
+
     onLogoutClick = (e) => {
         e.preventDefault();
         this.props.clearCurrentProfile();
@@ -22,126 +39,122 @@ class Navbar extends Component {
         const {user} = this.props.authReducer;
 
         const outState = (
-            <ul>
-                <li>
-                    <Link to="/login">Login</Link>    
-                </li>
+            <nav className='user-nav'>
+                <div className='user-nav__login'>
+                    <Link to="/login">Login</Link>
+                </div>
+                <div className='user-nav__register'>
                     <Link to="/register">
                         <Button.SignUp>
                             Sign Up
                         </Button.SignUp>
                     </Link>
-            </ul>
+                </div>
+            </nav>
         );
 
         const inState = (
-            <ul>
-                <li>
+            <nav className='user-nav'>
+                <div className='user-nav__user-name'>
                     <Link to={`/users/${user.id}/${user.name}`}>
                         {user.name}
                     </Link>
-                </li>
-                <li>
+                </div>
+                <div className='user-nav__logout'>
                     <Link to="#" onClick={this.onLogoutClick}>
                         Logout
                     </Link>
-                </li>
-            </ul>
+                </div>
+            </nav>
         );
 
 
         return (
-            <StyledNavbar>
-                <div className="container">
-                    <div className="main">
-                        <Link to="/" className="logo">
-                            <img 
-                                src={fsmLogo} 
-                                className="fsm_logo"
-                                alt="Full Stack Musician"
-                            />
-                        </Link>
-                    </div>
-                    {isAuthenticated ? inState : outState}
-                </div>
-            </StyledNavbar>
+            <NavbarStyled>
+                <Link to="/">
+                    <img 
+                        src={fsmLogo} 
+                        className="logo"
+                        alt="Full Stack Musician"
+                    />
+                </Link>
+                <form action='#' className='search'>
+                    <input
+                        className='search__input'
+                        type="text"
+                        name="search__input"
+                        placeholder="Search"
+                        value={this.state.name}
+                        onChange={this.onChange}
+                    />
+                    <button classNmae='search__button'>
+                        <svg className='search__icon'>
+                            <use xlinkHref={`${mag}#icon-magnifying-glass`} />
+                        </svg>
+                    </button>
+                </form>
+                {isAuthenticated ? inState : outState}
+            </NavbarStyled>
         )
     }
 }
+const NavbarStyled = styled.header`
+    height: 9rem;
+    background-color: ${lighterblack};
+    border-bottom: 1px solid ${primary};
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-const StyledNavbar = styled.header`
-    min-width: auto;
-    ${elevation[1]};
-    width: 100%;
-    background-color: #fafafb;
-    height: 90px;
-    border-top: 3px solid ${green};
-    ${fixed()};
+    .logo {
+        height: 3.25rem;
+        margin-left: 3rem;
+    }
 
-    .container {
-        max-width: 1264px;
-        width: 100%;
-        height: 100%;
-        margin: 0 auto;
-        position: relative;
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
+    .search {
+        background-color: orangered;
+        flex: 0 0 40%;
 
-        .main {
-            height: 100%;
+        &__input {
+            font-family: inherit;
+            font-size: inherit;
+            background-color: ${lighterblack};
+            border: none;
+            color: inherit;
+            padding: .7rem 2rem;
+            border-radius: 100px;
+            width: 90%;
+            transition: all .2s;
+            margin-right: -3.5rem;
 
-            .logo {
-                padding: 0 8px;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                transition: background-color 
-                    cubic-bezier(.165, .84, .44, 1) .25s;
-
-                &:hover {
-                    background-color: rgba(239,240,241,0.75);
-                }
-
-                .fsm_logo {
-                    height: 100%;
-                }
+            &:focus {
+                outline: none;
+                width: 100%;
+                background-color: ${darken(0.09, lighterblack)};
             }
         }
 
-        ul {
-            height: 100%;
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            padding-left: 48px;
-            align-items: center;
-            flex-grow: 1;
-            justify-content: flex-end;
+        &__button {
+            border: none;
+            background-color: ${lighterblack};
 
-            li {
-                flex-shrink: 0;
-                display: inline-flex;
-                height: 100%;
+            &:focus {
+                outline: none;
+            }
 
-                a {
-                    color: ${lightblack};
-                    display: inline-flex;
-                    align-items: center;
-                    padding: 0 10px;
-                    text-decoration: none;
-                    white-space: nowrap;
-                    transition: background-color 
-                        cubic-bezier(.165, .84, .44, 1) .25s,color cubic-bezier(.165, .84, .44, 1) .25s;
-
-                    &:hover {
-                        color: #3b4045;
-                        background-color: #eff0f1;
-                    }
-                }
+            &:active {
+                transform: translateY(2px);
             }
         }
+
+        &__icon {
+            height: 2rem;
+            width: 2rem;
+        }
+    }
+
+    .user-nav {
+        background-color: greenyellow;
     }
 `;
 
