@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import styled from 'styled-components'
-import {darken, lighten} from 'polished'
+import {darken} from 'polished'
 
 // REDUX ACTIONS
 import {logoutUser} from "../../actions/authActions";
@@ -143,9 +143,9 @@ const NavbarStyled = styled.header`
             }
         }
 
-        &__input:focus + &__button {
+        /* &__input:focus + &__button {
             background-color: red;
-        }
+        } */
 
         &__button {
             border: none;

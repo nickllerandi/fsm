@@ -18,6 +18,7 @@ import {black, white} from './utils'
 // Components
 // Layout
 import Navbar from "./components/layout/Navbar";
+import Sidebar from './components/layout/Sidebar'
 import Homepage from "./components/homepage/Homepage";
 import Footer from "./components/layout/Footer";
 
@@ -48,7 +49,7 @@ class App extends Component {
                         <Navbar/>
                         <ContentWrapper>
                             <SidebarWrapper>
-                                Navigation
+                                <Sidebar/>
                             </SidebarWrapper>
                             <MainbarWrapper>
                                 <Route exact path="/" component={Homepage}/>
@@ -78,12 +79,11 @@ const AppWrapper = styled.div`
 
 const ContentWrapper = styled.div`
     display: flex;
-    margin-top: 30rem;
 `;
 
-const SidebarWrapper = styled.div`
+const SidebarWrapper = styled.nav`
     background-color: ${black};
-    flex: 0 0 18%;
+    flex: 0 0 15%;
     color: ${white};
 `;
 

@@ -22,7 +22,7 @@ export const Button = styled.button`
 `;
 
 const SignUpButton = styled(Button)`
-    background: ${secondary};
+    background: ${primary};
     
     &:hover {
         background: ${darken(0.2, primary)};
