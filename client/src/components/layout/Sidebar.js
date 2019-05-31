@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import sprites from '../../img/sprite.svg'
 
 // UTILS
-import {white} from '../../utils'
+import {white, primary, secondary, secondary_light} from '../../utils'
 
 const Sidebar = () => {
     return (
@@ -52,17 +52,35 @@ const SidebarStyled = styled.div`
     justify-content: space-between;
 
     .side-nav {
+        font-size: 1.4rem;
+        list-style: none;
+        margin-top: 3.5rem;
+
         &__item {
 
         }
 
-        &__link {
+        &__link:link,
+        &__link:visited {
+            color: ${white};
+            text-decoration: none;
+            text-transform: uppercase;
+            display: block;
+            padding: 1.5rem 3rem;
 
+            display: flex;
+            align-items: center;
+        }
+
+        &__link:hover {
+            color: ${primary}
         }
 
         &__icon {
             width: 1.75rem;
             height: 1.75rem;
+            margin-right: 2rem;
+            fill: currentColor;
         }
     }
 

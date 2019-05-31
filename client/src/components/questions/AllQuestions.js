@@ -6,8 +6,6 @@ import styled from 'styled-components'
 import {lighterblack, black, primary} from '../../utils'
 import {darken} from 'polished'
 
-// import {Card} from '../../elements'
-
 class AllQuestions extends Component {
     render() {
         const {questions} = this.props;
