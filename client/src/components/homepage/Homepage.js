@@ -51,13 +51,13 @@ const HomepageStyled = styled.div`
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid ${lighterblack};
-            font-size: 1.35rem;
+            font-size: 1.4rem;
         }
 
         &__h1 {
             font-weight: 300;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            /* letter-spacing: 1px; */
             padding: 1.5rem 3rem;
         }
 
