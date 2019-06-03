@@ -2,15 +2,32 @@ import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import styled from 'styled-components'
+import {darken} from 'polished'
 
+// REDUX ACTIONS
 import {logoutUser} from "../../actions/authActions";
 import {clearCurrentProfile} from "../../actions/profileActions";
 
+// ASSETS
 import fsmLogo from '../../img/fsm-green2.png'
-import {lightblack, green, elevation, fixed} from '../../utils'
+import mag from '../../img/sprite.svg'
+
+// UTILS
 import {Button} from '../../elements'
+import {primary, black, lightblack, lighterblack, white} from '../../utils'
 
 class Navbar extends Component {
+    constructor() {
+        super();
+        this.state = {
+            search__input: ""
+        };
+    }
+
+    onChange = (e) => {
+        this.setState({[e.target.name]: e.target.value})
+    };
+
     onLogoutClick = (e) => {
         e.preventDefault();
         this.props.clearCurrentProfile();
@@ -22,125 +39,155 @@ class Navbar extends Component {
         const {user} = this.props.authReducer;
 
         const outState = (
-            <ul>
-                <li>
-                    <Link to="/login">Login</Link>    
-                </li>
+            <nav className='user-nav'>
+                <div className='user-nav__auth'>
+                    <Link to="/login">Login</Link>
+                </div>
+                <div className='user-nav__auth-action'>
                     <Link to="/register">
                         <Button.SignUp>
                             Sign Up
                         </Button.SignUp>
                     </Link>
-            </ul>
+                </div>
+            </nav>
         );
 
         const inState = (
-            <ul>
-                <li>
+            <nav className='user-nav'>
+                <div className='user-nav__auth'>
                     <Link to={`/users/${user.id}/${user.name}`}>
                         {user.name}
                     </Link>
-                </li>
-                <li>
+                </div>
+                <div className='user-nav__auth-action'>
                     <Link to="#" onClick={this.onLogoutClick}>
                         Logout
                     </Link>
-                </li>
-            </ul>
+                </div>
+            </nav>
         );
 
 
         return (
-            <StyledNavbar>
-                <div className="container">
-                    <div className="main">
-                        <Link to="/" className="logo">
-                            <img 
-                                src={fsmLogo} 
-                                className="fsm_logo"
-                                alt="Full Stack Musician"
-                            />
-                        </Link>
-                    </div>
-                    {isAuthenticated ? inState : outState}
-                </div>
-            </StyledNavbar>
+            <NavbarStyled>
+                <Link to="/">
+                    <img 
+                        src={fsmLogo} 
+                        className="logo"
+                        alt="Full Stack Musician"
+                    />
+                </Link>
+                <form action='#' className='search'>
+                    <input
+                        className='search__input'
+                        type="text"
+                        name="search__input"
+                        placeholder="Search"
+                        value={this.state.name}
+                        onChange={this.onChange}
+                    />
+                    <button className='search__button'>
+                        <svg className='search__icon'>
+                            <use xlinkHref={`${mag}#icon-magnifying-glass`} />
+                        </svg>
+                    </button>
+                </form>
+                {isAuthenticated ? inState : outState}
+            </NavbarStyled>
         )
     }
 }
+const NavbarStyled = styled.header`
+    height: 9rem;
+    background-color: ${lighterblack};
+    border-bottom: 1px solid ${primary};
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.4rem;
 
-const StyledNavbar = styled.header`
-    min-width: auto;
-    ${elevation[1]};
-    width: 100%;
-    background-color: #fafafb;
-    height: 90px;
-    border-top: 3px solid ${green};
-    ${fixed()};
+    .logo {
+        height: 8.25rem;
+        margin: 1rem 0 0 2.5rem;
+    }
 
-    .container {
-        max-width: 1264px;
-        width: 100%;
-        height: 100%;
-        margin: 0 auto;
-        position: relative;
+    .search {
+        flex: 0 0 40%;
         display: flex;
-        flex-flow: row nowrap;
         align-items: center;
+        justify-content: center;
+        /* background-color: red; */
 
-        .main {
-            height: 100%;
+        &__input {
+            font-family: inherit;
+            font-size: inherit;
+            background-color: ${white};
+            /* border-color: ${primary}; */
+            color: inherit;
+            padding: .7rem 2rem;
+            border-radius: 100px;
+            width: 90%;
+            transition: all .2s;
+            margin-right: -3.25rem;
 
-            .logo {
-                padding: 0 8px;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                transition: background-color 
-                    cubic-bezier(.165, .84, .44, 1) .25s;
+            &:focus {
+                outline: none;
+                width: 100%;
+                /* background-color: ${darken(0.05, white)}; */
+            }
 
-                &:hover {
-                    background-color: rgba(239,240,241,0.75);
-                }
-
-                .fsm_logo {
-                    height: 100%;
-                }
+            &::-webkit-input-placeholder {
+                font-weight: 100;
+                color: ${lightblack};
             }
         }
 
-        ul {
+        /* &__input:focus + &__button {
+            background-color: red;
+        } */
+
+        &__button {
+            border: none;
+            background-color: ${white};
+
+            &:focus {
+                outline: none;
+            }
+
+            &:active {
+                transform: translateY(2px);
+            }
+        }
+
+        &__icon {
+            height: 2rem;
+            width: 2rem;
+            fill: ${black};
+        }
+    }
+
+    .user-nav {
+        display: flex;
+        align-items: center;
+        align-self: stretch;
+        font-size: 1.4rem;
+
+        & > * {
+            padding: 0 2rem;
+            cursor: pointer;
             height: 100%;
             display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            padding-left: 48px;
             align-items: center;
-            flex-grow: 1;
-            justify-content: flex-end;
+        }
 
-            li {
-                flex-shrink: 0;
-                display: inline-flex;
-                height: 100%;
+        & > *:hover {
+            background-color: ${darken(0.1, white)};
+        }
 
-                a {
-                    color: ${lightblack};
-                    display: inline-flex;
-                    align-items: center;
-                    padding: 0 10px;
-                    text-decoration: none;
-                    white-space: nowrap;
-                    transition: background-color 
-                        cubic-bezier(.165, .84, .44, 1) .25s,color cubic-bezier(.165, .84, .44, 1) .25s;
-
-                    &:hover {
-                        color: #3b4045;
-                        background-color: #eff0f1;
-                    }
-                }
-            }
+        a, a:visited {
+            text-decoration: none;
+            color: ${black};
         }
     }
 `;

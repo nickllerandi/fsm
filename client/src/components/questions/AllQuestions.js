@@ -3,10 +3,8 @@ import {Link} from "react-router-dom";
 import styled from 'styled-components'
 
 // Styled Components / Utils
-import {lighterblack, black, blue} from '../../utils'
+import {lighterblack, black, primary} from '../../utils'
 import {darken} from 'polished'
-
-// import {Card} from '../../elements'
 
 class AllQuestions extends Component {
     render() {
@@ -78,7 +76,7 @@ const Card = styled.div`
             }
 
             a:hover {
-                color: ${blue}
+                color: ${primary}
             }
         }
 
@@ -90,10 +88,10 @@ const Card = styled.div`
             
             a {
                 text-decoration: none;
-                color: ${blue};
+                color: ${primary};
                 
                 &:hover {
-                    color: ${darken(0.2, blue)};
+                    color: ${darken(0.2, primary)};
                 }
             }
         }
