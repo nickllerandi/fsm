@@ -14,28 +14,37 @@ class AllQuestions extends Component {
             <div className="AllQuestions">
                 {questions.map(question => {
                     return (
-                        <Card key={question._id}>
-                            <div className='likes'>
-                                <div className='likes_value'>{question.likes.length}</div>
-                                <div>likes</div>
+                        <Card
+                            className='card' 
+                            key={question._id}
+                        >
+                            <h3 className='card__heading'>
+                                <Link to={`/questions/${question._id}`}>
+                                    {question.title}
+                                </Link>
+                            </h3> 
+
+                            <div className='card__user'>
+                                {question.user ? (
+                                    <Link to={`/users/${question.user._id}/${question.user.name}`}>
+                                        <button className='btn-inline'>
+                                            {question.user.name}
+                                        </button>
+                                    </Link>
+                                ) :
+                                    'User deleted profile :('
+                                }
                             </div>
 
-                            <div className='summary'>
-                                <h3>
-                                    <Link to={`/questions/${question._id}`}>
-                                        {question.title}
-                                    </Link>
-                                </h3>
-                                <div className='started'>
-                                    {question.user ? (
-                                        <Link to={`/users/${question.user._id}/${question.user.name}`}>
-                                            {question.user.name}
-                                        </Link>
-                                    ) :
-                                        'User deleted profile :('
-                                    }
+                            <div className='card__rating'>
+                                <div className='card_rating-likes'>
+                                    {question.likes.length}
+                                </div>
+                                <div className='card_rating-answers'>
+                                    {question.answers.length}
                                 </div>
                             </div>
+                            
                         </Card>
                     )
                 })}
@@ -46,53 +55,24 @@ class AllQuestions extends Component {
 
 const Card = styled.div`    
     display: flex;
-    padding: 12px 8px;
-    border-bottom: 1px solid ${lighterblack};
-    color: ${black};
-
-    .likes {
-        padding-right: 30px;
-
-        &_value {
-            text-align: center;
-        }
-    }
-
-    .summary {
-        flex: 1 auto;
-        width: auto;
-        float: none;
-        margin: 0;
-        overflow: hidden;
-
-        h3 {
-            font-weight: 400;
-            margin: 0 0 .35em 0;
-            line-height: 1.3;
-
-            a {
-                text-decoration: none;
-                color: ${black};
-            }
-
-            a:hover {
-                color: ${primary}
-            }
+    
+    .card {
+        &__heading {
+            margin-right: auto;
         }
 
-        .started {
-            width: auto;
-            line-height: inherit;
-            padding-top: 4px;
-            float: right;
+        &__user {
             
-            a {
-                text-decoration: none;
-                color: ${primary};
-                
-                &:hover {
-                    color: ${darken(0.2, primary)};
-                }
+        }
+
+        &__rating {
+
+            &-likes {
+
+            }
+
+            &-answers {
+
             }
         }
     }
