@@ -8,7 +8,7 @@ export const Button = styled.button`
     color: white;
     font-size: inherit;
     border: none;
-    background: ${secondary};
+    background: ${primary};
     cursor: pointer;
     ${elevation[1]};
     transition: 0.3s ease all;

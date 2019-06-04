@@ -10,7 +10,7 @@ import {getQuestions} from "../../actions/questionActions";
 import AllQuestions from "../questions/AllQuestions";
 
 // Styled Components
-import {Heading, Button} from '../../elements'
+import {Button} from '../../elements'
 import {lighterblack} from '../../utils'
 
 class Homepage extends Component {
@@ -55,9 +55,9 @@ const HomepageStyled = styled.div`
         }
 
         &__h1 {
-            font-weight: 300;
-            text-transform: uppercase;
-            /* letter-spacing: 1px; */
+            font-weight: 600;
+            /* text-transform: uppercase; */
+            letter-spacing: 1px;
             padding: 1.5rem 3rem;
         }
 

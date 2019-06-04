@@ -1,5 +1,5 @@
 import {createGlobalStyle} from 'styled-components'
-import {normalize} from 'polished'
+// import {normalize} from 'polished'
 import {black, white} from './utils'
 
 // ${normalize()} removed from const GlobalStyle

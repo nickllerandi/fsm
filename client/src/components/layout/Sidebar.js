@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import sprites from '../../img/sprite.svg'
 
 // UTILS
-import {white, primary, secondary, secondary_light} from '../../utils'
+import {white, primary} from '../../utils'
 
 const Sidebar = () => {
     return (
