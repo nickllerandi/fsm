@@ -60,7 +60,8 @@ router.post("/", passport.authenticate("jwt", {session: false}), async (req, res
 router.get("/:id", async (req, res) => {
     try {
         const question = await Question
-            .findById(req.params.id);
+            .findById(req.params.id)
+            .populate("user", ["name", "email"]);
         res.json(question);
     } catch (err) {
         res.status(404).json({
