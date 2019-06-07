@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
+import styled from 'styled-components'
 
 // COMPONENTS
 import Answer from "./Answer";
@@ -51,7 +52,7 @@ class Question extends Component {
         if (likes === undefined) return "...loading"
 
         return (
-            <div>
+            <div className='Question'>
                 <Card
                     className='card' 
                     key={question._id}
@@ -80,27 +81,49 @@ class Question extends Component {
                     </div>        
                 </Card>
 
-                    <p>{body}</p>
-                    
-                    <button 
-                        onClick={this.onLikeClick.bind(this, questionId)}
-                    >
-                        Like
-                    </button>
-                    {this.state.errors.alreadyLiked}
-                    
-                    {user === id ? (
-                        <button onClick={this.deleteQuestion.bind(this, questionId)}>Delete</button>    
-                    ) :
-                    null
-                    }
-                    <hr/>
-                    <Answer/>
-                    <AnswerFeed/>
+                <DetailStyled className='detail'>
+                    <div className='body'>
+                        <p>{body}</p>
+                        <button 
+                            onClick={this.onLikeClick.bind(this, questionId)}
+                        >
+                            Like
+                        </button>
+                        {this.state.errors.alreadyLiked}
+
+                        {user === id ? (
+                            <button onClick={this.deleteQuestion.bind(this, questionId)}>Delete</button>    
+                        ) :
+                        null
+                        }
+
+                        <Answer/>
+                    </div>
+
+                    <div className='answers'>
+                        <AnswerFeed/>
+                    </div>
+                </DetailStyled>
             </div>
         )
     }
 }
+
+const DetailStyled = styled.div`
+    display: flex;
+    padding: 4.5rem;
+
+    .body {
+        background-color: orangered;
+        flex: 0 0 60%;
+        margin-right: 4.5rem;
+    }
+
+    .answers {
+        background-color: yellowgreen;
+        flex: 1;
+    }
+`
 
 const mapStateToProps = state => ({
     questionReducer: state.questionReducer,
