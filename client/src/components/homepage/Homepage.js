@@ -15,10 +15,12 @@ import {lighterblack} from '../../utils'
 
 class Homepage extends Component {
     componentDidMount() {
+        console.log('componentDidMount')
         this.props.getQuestions();
     }
 
     render() {
+        console.log('render')
         const {questions} = this.props.questionReducer;
 
         return (

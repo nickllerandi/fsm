@@ -11,7 +11,8 @@ import AnswerFeed from "./AnswerFeed";
 import {getQuestion, deleteQuestion, likeQuestion, clearErrors} from "../../actions/questionActions";
 
 // STYLED-COMPONENTS
-import {Card} from '../../elements'
+import {Card, Button} from '../../elements'
+import {lighterblack, white, elevation} from '../../utils'
 
 class Question extends Component {
     constructor() {
@@ -83,26 +84,30 @@ class Question extends Component {
 
                 <DetailStyled className='detail'>
                     <div className='body'>
-                        <p>{body}</p>
-                        <button 
-                            onClick={this.onLikeClick.bind(this, questionId)}
-                        >
-                            Like
-                        </button>
-                        {this.state.errors.alreadyLiked}
+                        <div className='body__question'>
+                            <Button className='body__question-button'
+                                onClick={this.onLikeClick.bind(this, questionId)}
+                            >
+                                Like
+                            </Button>
+                            {this.state.errors.alreadyLiked}
 
-                        {user === id ? (
-                            <button onClick={this.deleteQuestion.bind(this, questionId)}>Delete</button>    
-                        ) :
-                        null
-                        }
+                            {user === id ? (
+                                <button onClick={this.deleteQuestion.bind(this, questionId)}>Delete</button>    
+                            ) :
+                            null
+                            }
+                            <p className='paragraph'>
+                                {body}
+                            </p>
+                        </div>
 
+                        <hr/>
+                        
                         <Answer/>
                     </div>
 
-                    <div className='answers'>
-                        <AnswerFeed/>
-                    </div>
+                    <AnswerFeed/>
                 </DetailStyled>
             </div>
         )
@@ -112,16 +117,30 @@ class Question extends Component {
 const DetailStyled = styled.div`
     display: flex;
     padding: 4.5rem;
+    background-color: ${lighterblack};
+    font-size: 1.4rem;
 
     .body {
-        background-color: orangered;
+        background-color: ${white};
         flex: 0 0 60%;
         margin-right: 4.5rem;
-    }
+        ${elevation[2]};
+        padding: 3rem;
 
-    .answers {
-        background-color: yellowgreen;
-        flex: 1;
+        &__question {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+
+
+            &-button {
+                margin-right: 1rem;
+            }
+        }
+
+        & .paragraph {
+            margin-top: -4px;
+        }
     }
 `
 

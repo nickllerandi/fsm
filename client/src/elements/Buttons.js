@@ -29,4 +29,9 @@ const SignUpButton = styled(Button)`
     }
 `;
 
+const DeleteButton = styled(Button)`
+    background: tomato;
+`
+
 Button.SignUp = SignUpButton;
+Button.Delete = DeleteButton;
