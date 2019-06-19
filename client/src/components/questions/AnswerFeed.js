@@ -56,13 +56,14 @@ class AnswerFeed extends Component {
 
 const AnswerFeedStyled = styled.div`
     /* background-color: yellowgreen;  */
-    flex: 1;   
+    /* flex: 1;    */
     display: flex;
     flex-direction: column;
+    margin-top: 3.5rem;
 
     .Answer {
         background-color: ${white};
-        ${elevation[2]};
+        ${elevation[1]};
         padding: 3rem;
         margin-bottom: 3.5rem;
 

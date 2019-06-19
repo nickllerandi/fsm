@@ -6,6 +6,7 @@ import styled from 'styled-components'
 // COMPONENTS
 import Answer from "./Answer";
 import AnswerFeed from "./AnswerFeed";
+import Ads from '../layout/Ads'
 
 // ACTIONS
 import {getQuestion, deleteQuestion, likeQuestion, clearErrors} from "../../actions/questionActions";
@@ -105,9 +106,11 @@ class Question extends Component {
                         <hr/>
                         
                         <Answer/>
+                        <hr/>
+                        <AnswerFeed/>
                     </div>
-
-                    <AnswerFeed/>
+                    
+                    <Ads/>
                 </DetailStyled>
             </div>
         )
@@ -122,7 +125,7 @@ const DetailStyled = styled.div`
 
     .body {
         background-color: ${white};
-        flex: 0 0 60%;
+        flex: 0 0 70%;
         margin-right: 4.5rem;
         ${elevation[2]};
         padding: 3rem;
@@ -130,7 +133,7 @@ const DetailStyled = styled.div`
         &__question {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 1rem;
+            margin-bottom: 3.5rem;
 
 
             &-button {
