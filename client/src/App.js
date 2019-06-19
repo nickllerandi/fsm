@@ -13,7 +13,7 @@ import store from "./store";
 
 // CSS / Global Styles
 import GlobalStyle from './Global'
-import {black, white} from './utils'
+import {black, white, primary} from './utils'
 
 // Components
 // Layout

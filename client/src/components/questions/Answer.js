@@ -39,7 +39,7 @@ class Answer extends Component {
         const {errors} = this.state;
 
         return (
-            <div className="Answer">
+            <div className="Answer" style={{margin:'3.5rem 0'}}>
                 Answer this question
                 <form noValidate onSubmit={this.onSubmit}>
                     <input
